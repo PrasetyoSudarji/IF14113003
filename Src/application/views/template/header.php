@@ -5,13 +5,13 @@
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?=base_url()?>assets/img/logo.png">    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/template-login/css/login_modal.css">
     <!-- jQuery library -->
     <script src="<?=base_url()?>assets/jquery/jquery-3.2.1.min.js"></script>
-    <script src="<?=base_url()?>assets/jquery/act.js"></script>
     <!-- Latest compiled JavaScript -->
-    <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.js"></script>
     <!-- Other Library -->  
     <link rel="stylesheet" href="<?=base_url()?>assets/fontawesome/css/font-awesome.min.css">
   </head>
