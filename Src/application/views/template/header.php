@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<title>Samsak</title>
+	<title>Samsak.id</title>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?=base_url()?>assets/img/logo.png">    
     <!-- CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/template-login/css/login_modal.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/mine/css/style.css">
     <!-- jQuery library -->
     <script src="<?=base_url()?>assets/jquery/jquery-3.2.1.min.js"></script>
     <!-- Latest compiled JavaScript -->

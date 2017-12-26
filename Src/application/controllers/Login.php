@@ -14,6 +14,8 @@ class Login extends CI_Controller {
 					window.location.href='".base_url()."';
 					</script>";
 			$data = array(
+				'saldoDojo' => null,
+				'listAnggota' => null,
 				'infoDojo' => null,
 				'alert' => $alert,
 				'page' => 'notification',
@@ -33,6 +35,8 @@ class Login extends CI_Controller {
 				$_SESSION['login'] = $queryuser['id'];
 				$_SESSION['level'] = $queryuser['level'];
 				$data = array(
+					'saldoDojo' => null,
+					'listAnggota' => null,
 					'infoDojo' => null,
 					'nameUser' => 'Login',
 					'alert' => $alert,
@@ -47,6 +51,8 @@ class Login extends CI_Controller {
 				window.location.href='".base_url()."';
 				</script>";
 				$data = array(
+					'saldoDojo' => null,
+					'listAnggota' => null,
 					'infoDojo' => null,
 					'alert' => $alert,
 					'page' => 'notification',

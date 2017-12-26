@@ -7,6 +7,8 @@ class Logout extends CI_Controller {
 		$_SESSION['login'] = null;
 		$_SESSION['level'] = null;
 		$data = array(
+			'saldoDojo' => null,
+			'listAnggota' => null,
 			'infoDojo' => null,
 			'page' => 'home',
 			'link' => 'home'
