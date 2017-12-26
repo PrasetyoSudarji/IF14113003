@@ -5,9 +5,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$_SESSION['login'] = null;
-		
 		$data = array(
+			'infoDojo' => null,
 			'page' => 'home',
 			'link' => 'home'
 		);

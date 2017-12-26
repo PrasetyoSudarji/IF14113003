@@ -13,6 +13,13 @@ class Login extends CI_Controller {
 					alert('Username salah !!');
 					window.location.href='".base_url()."';
 					</script>";
+			$data = array(
+				'infoDojo' => null,
+				'alert' => $alert,
+				'page' => 'notification',
+				'link' => 'home'
+			);
+			$this->load->view('template/wrapper', $data);
 		}else{
 			foreach($queryuser->result_array() as $queryuser){
 				$username = $queryuser['username'];
@@ -26,6 +33,7 @@ class Login extends CI_Controller {
 				$_SESSION['login'] = $queryuser['id'];
 				$_SESSION['level'] = $queryuser['level'];
 				$data = array(
+					'infoDojo' => null,
 					'nameUser' => 'Login',
 					'alert' => $alert,
 					'page' => 'notification',
@@ -39,13 +47,13 @@ class Login extends CI_Controller {
 				window.location.href='".base_url()."';
 				</script>";
 				$data = array(
+					'infoDojo' => null,
 					'alert' => $alert,
 					'page' => 'notification',
+					'link' => 'home'
 				);
 				$this->load->view('template/wrapper', $data);
 			}
 		}
-
-		
 	}
 }

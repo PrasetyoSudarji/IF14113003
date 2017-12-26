@@ -7,7 +7,7 @@
 				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i> &nbsp&nbsp&nbspHome </a></li>";
 
 			}else{
-				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."index.php/menu'><i class='fa fa-home' aria-hidden='true'></i> Home </a></li>";
+				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."index.php/home'><i class='fa fa-home' aria-hidden='true'></i> Home </a></li>";
 				echo "<li class=";if($link=='kegiatan'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-calendar' aria-hidden='true'></i> &nbsp&nbsp&nbspKegiatan </a></li>";
 				echo "<li class=";if($link=='surat_edaran'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-envelope' aria-hidden='true'></i> &nbsp&nbsp&nbspSurat dan Edaran </a></li>";
 				echo "<li class=";if($link=='keuangan'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-money' aria-hidden='true'></i> &nbsp&nbsp&nbspKeuangan </a></li>";

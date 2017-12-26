@@ -21,13 +21,32 @@
       <div class="container">
       <div class="row ">
         <div class="col-md-1">
-            <a href="<?=base_url()?>">
+            <a href=
+              <?php 
+                if($_SESSION['login'] == null){
+                  echo base_url();
+                }else{
+                  echo base_url()."index.php/Home";
+                }
+              ?> 
+            >
               <img src="<?=base_url()?>assets/img/logo.png" width="70px" style="margin-bottom:10px; "/>
             </a>
         </div>
         <div class="col-md-5">
-          <h3>Samsak</h3>
-          <p><em>"Teknik Informatika Institut Teknologi Sumatera"</em></p>
+          <h3><b>Samsak.id</b></h3>
+          <p><em>"<b>
+              <?php
+                if($infoDojo == null){
+                  echo "Website for Karate Management In Indonesia";
+                }else{
+                  foreach ($infoDojo as $key => $value) {
+                    # code...
+                  }
+                  echo $value['nama_dojo']." (".$value['kode_dojo'].")";
+                }
+              ?>
+            </b>"</em></p>
         </div>
         <div class="col-md-6">
             <p class="text-right" >
