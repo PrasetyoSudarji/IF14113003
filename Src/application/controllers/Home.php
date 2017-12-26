@@ -69,7 +69,6 @@ class Home extends CI_Controller {
 		$data = array(
 			'saldoDojo' => $saldoDojo,
 			'listAnggota' => $listAnggota,
-			'infoDojo' => $infoDojo,
 			'nameUser' => $nameUser,
 			'page' => 'home',
 			'link' => 'home'

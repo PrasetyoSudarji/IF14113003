@@ -38,13 +38,10 @@
           <h3><b>Samsak.id</b></h3>
           <p><em>"<b>
               <?php
-                if($infoDojo == null){
+                if($_SESSION['kode_dojo'] == null){
                   echo "Website for Karate Management In Indonesia";
                 }else{
-                  foreach ($infoDojo as $key => $value) {
-                    # code...
-                  }
-                  echo $value['nama_dojo']." (".$value['kode_dojo'].")";
+                  echo $_SESSION['nama_dojo']." (".$_SESSION['kode_dojo'].")";
                 }
               ?>
             </b>"</em></p>

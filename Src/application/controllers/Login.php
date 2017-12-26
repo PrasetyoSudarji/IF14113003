@@ -14,9 +14,6 @@ class Login extends CI_Controller {
 					window.location.href='".base_url()."';
 					</script>";
 			$data = array(
-				'saldoDojo' => null,
-				'listAnggota' => null,
-				'infoDojo' => null,
 				'alert' => $alert,
 				'page' => 'notification',
 				'link' => 'home'
@@ -34,10 +31,15 @@ class Login extends CI_Controller {
 					</script>";
 				$_SESSION['login'] = $queryuser['id'];
 				$_SESSION['level'] = $queryuser['level'];
+				$_SESSION['nama'] = $queryuser['nama'];
+				$_SESSION['kode_dojo'] = $queryuser['kode_dojo'];
+				$infoDojo = $this->Model->ambil("kode_dojo",$_SESSION['kode_dojo'],"tbl_dojo")->result_array();
+				if($infoDojo != null){
+					foreach ($infoDojo as $key => $value) {
+						$_SESSION['nama_dojo'] = $value['nama_dojo'];
+					}
+				}
 				$data = array(
-					'saldoDojo' => null,
-					'listAnggota' => null,
-					'infoDojo' => null,
 					'nameUser' => 'Login',
 					'alert' => $alert,
 					'page' => 'notification',
@@ -51,9 +53,6 @@ class Login extends CI_Controller {
 				window.location.href='".base_url()."';
 				</script>";
 				$data = array(
-					'saldoDojo' => null,
-					'listAnggota' => null,
-					'infoDojo' => null,
 					'alert' => $alert,
 					'page' => 'notification',
 					'link' => 'home'

@@ -8,7 +8,7 @@
 
 			}else{
 				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."index.php/home'><i class='fa fa-home' aria-hidden='true'></i> Home </a></li>";
-				echo "<li class=";if($link=='kegiatan'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-calendar' aria-hidden='true'></i> &nbsp&nbsp&nbspKegiatan </a></li>";
+				echo "<li class=";if($link=='kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan'><i class='fa fa-calendar' aria-hidden='true'></i> &nbsp&nbsp&nbspKegiatan </a></li>";
 				echo "<li class=";if($link=='surat_edaran'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-envelope' aria-hidden='true'></i> &nbsp&nbsp&nbspSurat dan Edaran </a></li>";
 				echo "<li class=";if($link=='keuangan'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-money' aria-hidden='true'></i> &nbsp&nbsp&nbspKeuangan </a></li>";
 				echo "<li class=";if($link=='sumber_daya'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-group' aria-hidden='true'></i> &nbsp&nbsp&nbspSumber Daya </a></li>";
@@ -27,7 +27,7 @@
           <ul class="nav navbar-nav">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> &nbsp&nbsp&nbsp<?php 
-              	echo $nameUser;
+              	echo $_SESSION['nama'];
               ?>
                <span class='caret'></span></a>
                 <ul class="dropdown-menu">
