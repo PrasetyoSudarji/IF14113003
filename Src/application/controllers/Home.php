@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 		$pemasukan = 0;
 		$pengeluaran = 0;
 		$saldoDojo = 0;
-		if($_SESSION['login']!=null){
+		if($this->session->has_userdata('login')){
 			$query = $this->Model->ambil("id",$_SESSION['login'],"tbl_user");
 			foreach($query->result_array() as $result){
 				$nameUser = $result['nama'];
@@ -64,6 +64,12 @@ class Home extends CI_Controller {
 				}
 				
 			}
+		}else{
+			$_SESSION['login'] = null;
+			$_SESSION['level'] = null;
+			$_SESSION['nama'] = null;
+			$_SESSION['kode_dojo'] = null;
+			$_SESSION['nama_dojo'] = null;
 		}
 		
 		$data = array(

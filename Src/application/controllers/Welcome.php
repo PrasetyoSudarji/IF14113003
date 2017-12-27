@@ -5,8 +5,12 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		$_SESSION['login'] = null;
+		$_SESSION['level'] = null;
+		$_SESSION['nama'] = null;
+		$_SESSION['kode_dojo'] = null;
+		$_SESSION['nama_dojo'] = null;
 		$data = array(
-			'infoDojo' => null,
 			'page' => 'home',
 			'link' => 'home'
 		);

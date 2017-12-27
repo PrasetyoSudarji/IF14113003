@@ -1,5 +1,5 @@
 <?php
-if($_SESSION['login'] ==null){
+if(!$this->session->has_userdata('login')){
 	echo "
 	<div style='min-height: 500px;border: 2px solid #0f0f0f; border-radius: 5px; margin : 5px; padding : 5px; position : relative'>
 		<div style='margin: 0;position: absolute;top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);'>

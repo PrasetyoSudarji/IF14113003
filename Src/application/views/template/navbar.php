@@ -3,13 +3,13 @@
 
       <ul class="nav navbar-nav">
 	  <?php
-			if ($_SESSION['login'] == null){
+			if (!$this->session->has_userdata('login')){
 				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i> &nbsp&nbsp&nbspHome </a></li>";
 
 			}else{
-				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."index.php/home'><i class='fa fa-home' aria-hidden='true'></i> Home </a></li>";
+				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i> Home </a></li>";
 				echo "<li class=";if($link=='kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan'><i class='fa fa-calendar' aria-hidden='true'></i> &nbsp&nbsp&nbspKegiatan </a></li>";
-				echo "<li class=";if($link=='surat_edaran'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-envelope' aria-hidden='true'></i> &nbsp&nbsp&nbspSurat dan Edaran </a></li>";
+				echo "<li class=";if($link=='surat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran'><i class='fa fa-envelope' aria-hidden='true'></i> &nbsp&nbsp&nbspSurat dan Edaran </a></li>";
 				echo "<li class=";if($link=='keuangan'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-money' aria-hidden='true'></i> &nbsp&nbsp&nbspKeuangan </a></li>";
 				echo "<li class=";if($link=='sumber_daya'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-group' aria-hidden='true'></i> &nbsp&nbsp&nbspSumber Daya </a></li>";
 				if($_SESSION['level'] > 1){
@@ -20,7 +20,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <?php
-        if ($_SESSION['login'] == null){
+        if (!$this->session->has_userdata('login')){
           echo '<li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>';
         }else{
            ?>
