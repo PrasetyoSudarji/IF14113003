@@ -70,6 +70,7 @@ class Home extends CI_Controller {
 			$_SESSION['nama'] = null;
 			$_SESSION['kode_dojo'] = null;
 			$_SESSION['nama_dojo'] = null;
+			$_SESSION['jabatan'] = null;
 		}
 		
 		$data = array(

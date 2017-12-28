@@ -10,7 +10,18 @@
 				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i> Home </a></li>";
 				echo "<li class=";if($link=='kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan'><i class='fa fa-calendar' aria-hidden='true'></i> &nbsp&nbsp&nbspKegiatan </a></li>";
 				echo "<li class=";if($link=='surat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran'><i class='fa fa-envelope' aria-hidden='true'></i> &nbsp&nbsp&nbspSurat dan Edaran </a></li>";
-				echo "<li class=";if($link=='keuangan'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-money' aria-hidden='true'></i> &nbsp&nbsp&nbspKeuangan </a></li>";
+				echo "<li class='dropdown ";if($link=='rekapitulasi' || $link=='iuran'){echo 'active';}echo "'>
+		              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-money'></span> 
+		               Keuangan <span class='caret'></span></a>
+		                <ul class='dropdown-menu'>
+		                  <li class=";if($link=='rekapitulasi'){echo 'active';}echo "><a href='".base_url()."index.php/rekapitulasi'><i class='fa fa-book' aria-hidden='true'></i> Kas-Rekapitulasi </a></li>
+		                  <li class=";if($link=='iuran'){echo 'active';}echo "><a href='".base_url()."index.php/iuran'><i class='fa fa-table' aria-hidden='true'></i> Iuran </a></li>
+		                  ";
+		                  if($_SESSION['jabatan']=="Bendahara"){
+		                  	echo "<li class=";if($link=='pembayaranIuran'){echo 'active';}echo "><a href='".base_url()."index.php/iuran/pembayaran'><i class='fa fa-edit' aria-hidden='true'></i> Pembayaran Iuran </a></li>";
+		                  }
+		                echo "</ul>
+		              </li>";
 				echo "<li class=";if($link=='sumber_daya'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-group' aria-hidden='true'></i> &nbsp&nbsp&nbspSumber Daya </a></li>";
 				if($_SESSION['level'] > 1){
 					echo "<li class=";if($link=='administrasi'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-edit' aria-hidden='true'></i> &nbsp&nbsp&nbspAdministrasi </a></li>";

@@ -32,6 +32,7 @@ class Login extends CI_Controller {
 				$_SESSION['login'] = $queryuser['id'];
 				$_SESSION['level'] = $queryuser['level'];
 				$_SESSION['nama'] = $queryuser['nama'];
+				$_SESSION['jabatan'] = $queryuser['jabatan'];
 				$_SESSION['kode_dojo'] = $queryuser['kode_dojo'];
 				$infoDojo = $this->Model->ambil("kode_dojo",$_SESSION['kode_dojo'],"tbl_dojo")->result_array();
 				if($infoDojo != null){

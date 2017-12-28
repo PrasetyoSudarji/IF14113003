@@ -21,6 +21,12 @@
 
 }
 
+.container-content .form-group{
+  margin : 10px;
+  padding: 10px;
+
+}
+
 .container-content .footer-content{
   margin : 5px;
   padding: 5px;

@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/DataTables/DataTables-1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/mine/css/style.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/mine/css/button.css">
-
+    <link href="<?=base_url()?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <!-- jQuery library -->
     <script src="<?=base_url()?>assets/jquery/jquery-3.2.1.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.js"></script>
     <script src="<?=base_url()?>assets/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="<?=base_url()?>assets/DataTables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
     <!-- Other Library -->  
     <link rel="stylesheet" href="<?=base_url()?>assets/fontawesome/css/font-awesome.min.css">
     
@@ -68,8 +70,4 @@
     </div>
     </div>
 
-    <script language='javascript'>
-      $(document).ready(function() {
-          $('#list').DataTable();
-      } );
-    </script>
+    
