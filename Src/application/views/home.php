@@ -20,9 +20,11 @@ if(!$this->session->has_userdata('login')){
 						}
 					}
 					echo $counterAnggota;
-					echo " </br>
-					Saldo Dojo : ";
-					echo 'Rp. ' . number_format( $saldoDojo, 0 , '' , '.' ) . ',-';
+					if($_SESSION['jabatan'] != 'Admin Kabupaten' || $_SESSION['jabatan'] != 'Admin Provinsi' || $_SESSION['jabatan'] != 'Admin Nasional'){
+						echo " </br>
+						Saldo Dojo : ";
+						echo 'Rp. ' . number_format( $saldoDojo, 0 , '' , '.' ) . ',-';
+					}
 					echo "</b>
 					</h3>
 				</div>

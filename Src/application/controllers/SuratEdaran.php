@@ -6,8 +6,18 @@ class SuratEdaran extends CI_Controller {
     public function index(){
     	
 		$data = array(
-			'page' => 'surat_edaran',
-			'link' => 'surat_edaran'
+			'page' => 'lihat_surat_edaran',
+			'link' => 'lihat_surat_edaran'
+		);	
+		
+		$this->load->view('template/wrapper', $data);
+    }
+
+    public function tambah(){
+    	
+		$data = array(
+			'page' => 'tambah_surat_edaran',
+			'link' => 'tambah_surat_edaran'
 		);	
 		
 		$this->load->view('template/wrapper', $data);

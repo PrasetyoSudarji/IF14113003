@@ -57,7 +57,14 @@ class Model extends CI_Model {
 
     }
 
-    function getKodeKabupaten($param_id,$id){
+    function maxFrom($param_id,$table ){
+        $this->db->select_max($param_id);
+        $query = $this->db->get($table)->result_array();
+        return (int) $query[0][$param_id];
+
+    }
+
+    function getDojo($param_id,$id){
         return $this->db->get_where('tbl_dojo', array($param_id => $id));
     }
 

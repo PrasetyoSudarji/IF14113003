@@ -11,7 +11,7 @@
 
 			<div class='container-content' style='min-height:450px;'>
 				<div class='body-content'>
-					<form class='form-horizontal' method='POST' action='".base_url()."index.php/anggota/proses'>
+					<form class='form-horizontal' method='POST' action='".base_url()."index.php/kegiatan/proses'>
 						<div class='form-group'>
 					        <label for='inputNama' class='control-label col-xs-2'> Nama Kegiatan</label>
 					        <div class='col-xs-10'>
@@ -47,7 +47,7 @@
 						</div>
 						<div class='form-group'>
 			                <label for='inputTime1' class='control-label col-xs-2'>Waktu Mulai </label>
-			                <div class='input-group date form_datetime col-xs-10' data-date-format='dd MM yyyy - HH:ii p' data-link-field='inputTime1' style='padding-left:15px;padding-right:15px;'>
+			                <div class='input-group date form_datetime col-xs-10' data-date-format='yyyy-mm-dd  HH:ii p' data-link-field='inputTime1' style='padding-left:15px;padding-right:15px;'>
 			                    <input type='text' size='16'class='form-control' value='' readonly>
 			                    <span class='input-group-addon'><span class='glyphicon glyphicon-remove'></span></span>
 								<span class='input-group-addon'><span class='glyphicon glyphicon-th'></span></span>
@@ -56,7 +56,7 @@
 			            </div>
 			            <div class='form-group'>
 			                <label for='inputTime2' class='control-label col-xs-2'>Waktu Selesai </label>
-			                <div class='input-group date form_datetime col-xs-10' data-date-format='dd MM yyyy - HH:ii p' data-link-field='inputTime2' style='padding-left:15px;padding-right:15px;'>
+			                <div class='input-group date form_datetime col-xs-10' data-date-format='yyyy-mm-dd  HH:ii p' data-link-field='inputTime2' style='padding-left:15px;padding-right:15px;'>
 			                    <input type='text' size='16'class='form-control' value='' readonly>
 			                    <span class='input-group-addon'><span class='glyphicon glyphicon-remove'></span></span>
 								<span class='input-group-addon'><span class='glyphicon glyphicon-th'></span></span>
@@ -96,6 +96,12 @@
 					        <label for='inputBiaya' class='control-label col-xs-2'> Biaya Kegiatan</label>
 					        <div class='col-xs-10'>
 					            <input type='number' class='form-control' name='inputBiaya' id='inputBiaya' placeholder='Ex : 50000'>
+					        </div>
+					    </div>
+					    <div class='form-group'>
+					        <label for='inputDeskripsi' class='control-label col-xs-2'> Deskripsi Kegiatan</label>
+					        <div class='col-xs-10'>
+					            <textarea class='form-control' name='inputDeskripsi' id='inputDeskripsi' rows='20'></textarea>
 					        </div>
 					    </div>
 					    

@@ -11,6 +11,7 @@
 
 			<div class='container-content' style='min-height:450px;'>
 				<div class='body-content'>
+				<div id='placeholderKegiatan'>
 					<div class='table-responsive'>
 						<table id='list' class='table table-hover table-bordered' cellspacing='0' width='100%'>
 					        <thead>
@@ -35,7 +36,7 @@
 					        			echo "<td> ".$value['nama_kegiatan']." </td>";
 					        			echo "<td> ".$value['level_kegiatan']." </td>";
 					        			echo "<td>Rp. " . number_format( $value['biaya_kegiatan'], 0 , "" , "." ) . ",-</td>";
-					        			echo "<td> <button class='button'> View </button> </td>";
+					        			echo "<td> <button class='button' onclick='viewKegiatan(".$value['kode_kegiatan'].");'> View </button> </td>";
 					        			echo "</tr>";
 					        			$no++;
 					        		}
@@ -45,6 +46,7 @@
 					        echo "</tbody>
 				        </table>
 			        </div>
+				</div>
 				</div>
 			</div>
 		</div>

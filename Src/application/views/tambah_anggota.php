@@ -50,17 +50,7 @@
 					            <input type='password' class='form-control' name='inputPasswordConfirm' id='inputPasswordConfirm' placeholder='Password'>
 					        </div>
 					    </div>
-					    <div class='form-group'>
-						  	<label for='inputDojo' class='control-label col-xs-2'>Nama Dojo </label>
-						  	<div class='col-xs-10'>
-						  	<select class='form-control' id='inputDojo' name='inputDojo'>";
-							    foreach ($dataDojo as $key => $value) {
-						  			# code...
-				  					echo "<option value='".$value['kode_dojo']."'>".$value['nama_dojo']."</option>";
-						  		}
-						  	echo "</select>
-						  	</div>
-						</div>
+						
 						<div class='form-group'>
 						  	<label for='inputTingkatan' class='control-label col-xs-2'> Tingkatan </label>
 						  	<div class='col-xs-10'>
@@ -73,31 +63,7 @@
 						  	echo "</select>
 						  	</div>
 						</div>
-					    <div class='form-group'>
-						  	<label for='inputAtlit' class='control-label col-xs-2'> Atlit </label>
-						  	<div class='col-xs-10'>
-						  	<select class='form-control' id='inputAtlit' name='inputAtlit'>";
-							    $totalAtlit = count($listAtlit);
-						  		for($i = 0;$i<$totalAtlit;$i++) {
-						  			# code...
-				  					echo "<option value='".$listAtlit[$i]."'>".$listAtlit[$i]."</option>";
-						  		}
-						  	echo "</select>
-						  	</div>
-						</div>
-						<div class='form-group'>
-						  	<label for='inputJuri' class='control-label col-xs-2'> Juri </label>
-						  	<div class='col-xs-10'>
-						  	<select class='form-control' id='inputJuri' name='inputJuri'>";
-							    $totalJuri = count($listJuri);
-						  		for($i = 0;$i<$totalJuri;$i++) {
-						  			# code...
-				  					echo "<option value='".$listJuri[$i]."'>".$listJuri[$i]."</option>";
-						  		}
-						  	echo "</select>
-						  	</div>
-						</div>
-    
+					    
 					    <div class='form-group'>
 					        <div class='col-xs-offset-5 col-xs-7' >
 					            <button type='submit' class='btn btn-primary' style='min-width: 20%;'> Input </button>

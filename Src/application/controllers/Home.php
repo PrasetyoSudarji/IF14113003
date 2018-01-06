@@ -18,7 +18,10 @@ class Home extends CI_Controller {
 			$query = $this->Model->ambil("id",$_SESSION['login'],"tbl_user");
 			foreach($query->result_array() as $result){
 				$nameUser = $result['nama'];
-				if($result['kode_dojo'] != null){
+				if($_SESSION['jabatan']== 'Admin Kabupaten'){
+					$listAnggota = $this->Model->list_data_all('tbl_user')->result_array();
+				}else{
+					
 					$infoDojo = $this->Model->ambil("kode_dojo",$result['kode_dojo'],"tbl_dojo")->result_array();
 					$listAnggota = $this->Model->ambil("kode_dojo",$result['kode_dojo'],"tbl_user")->result_array();	
 				}
@@ -71,6 +74,9 @@ class Home extends CI_Controller {
 			$_SESSION['kode_dojo'] = null;
 			$_SESSION['nama_dojo'] = null;
 			$_SESSION['jabatan'] = null;
+			$_SESSION['kode_kabupaten_kota'] = null;
+			$_SESSION['kode_provinsi'] = null;
+			$_SESSION['kode_negara'] = null;
 		}
 		
 		$data = array(

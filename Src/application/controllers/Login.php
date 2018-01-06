@@ -34,6 +34,9 @@ class Login extends CI_Controller {
 				$_SESSION['nama'] = $queryuser['nama'];
 				$_SESSION['jabatan'] = $queryuser['jabatan'];
 				$_SESSION['kode_dojo'] = $queryuser['kode_dojo'];
+				$_SESSION['kode_kabupaten_kota'] = $queryuser['kode_kabupaten_kota'];
+				$_SESSION['kode_provinsi'] = $queryuser['kode_provinsi'];
+				$_SESSION['kode_negara'] = $queryuser['kode_negara'];
 				$infoDojo = $this->Model->ambil("kode_dojo",$_SESSION['kode_dojo'],"tbl_dojo")->result_array();
 				if($infoDojo != null){
 					foreach ($infoDojo as $key => $value) {
