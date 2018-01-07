@@ -71,6 +71,68 @@
       ajaxRequest.send(null);
   }
 
+  function viewUser(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          var ajaxTampil = document.getElementById('placeholderUser');
+          ajaxTampil.innerHTML = ajaxRequest.responseText;
+        }
+      }
+      var url="<?=base_url()?>index.php/anggota/viewUser?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+  }
+
+  function viewSuratEdaran(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          var ajaxTampil = document.getElementById('placeholderSuratEdaran');
+          ajaxTampil.innerHTML = ajaxRequest.responseText;
+        }
+      }
+      var url="<?=base_url()?>index.php/suratEdaran/view?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+  }
+
   $('.form_date').datetimepicker({
     language:  'id',
     weekStart: 1,

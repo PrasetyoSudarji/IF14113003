@@ -29,6 +29,31 @@ class Anggota extends CI_Controller {
         $this->load->view('template/wrapper', $data);
     }
 
+    public function viewUser(){
+        extract($_GET);
+
+        $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
+        $infoDojoName = null;
+
+        foreach ($queryUser as $key => $value) {
+            # code...
+            $queryDojo = $this->Model->ambil("kode_dojo",$value['kode_dojo'],"tbl_dojo")->result_array();
+            foreach ($queryDojo as $key => $value2) {
+                # code...
+                $infoDojoName = $value2['nama_dojo'];
+            }
+        }
+        
+        $data = array(
+            'infoUser' => $queryUser,
+            'infoDojoName' => $infoDojoName,
+            'page' => 'view_anggota',
+            'link' => 'view_anggota'
+        );  
+        
+        $this->load->view('ajaxViewUser', $data);
+    }
+
     
 
     public function tambah(){
@@ -141,7 +166,7 @@ class Anggota extends CI_Controller {
                             'juri' => null,
                             'jabatan' => $inputJabatan);
 
-            #$queryInsert = $this->Model->simpan_data($dataInsert,'tbl_user');   
+            $queryInsert = $this->Model->simpan_data($dataInsert,'tbl_user');   
             $alert = "<script>
                         alert('Input Success!!');
                         window.location.href='".base_url()."index.php/anggota/tambah';

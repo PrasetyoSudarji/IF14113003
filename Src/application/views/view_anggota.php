@@ -11,6 +11,7 @@
 
 			<div class='container-content' style='min-height:450px;'>
 				<div class='body-content'>
+				<div id='placeholderUser'>
 					<div class='table-responsive'>
 						<table id='list' class='table table-hover table-bordered' cellspacing='0' width='100%'>
 					        <thead>
@@ -43,7 +44,7 @@
 					        				echo "<td> Pengurus </td>";
 					        			}
 					        			echo "<td> ".$value['jabatan']." </td>";
-					        			echo "<td> <button class='button'> View </button> </td>";
+					        			echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> </td>";
 					        			echo "</tr>";
 					        			$no++;
 					        		}
@@ -53,6 +54,7 @@
 					        echo "</tbody>
 				        </table>
 			        </div>
+				</div>
 				</div>
 			</div>
 		</div>

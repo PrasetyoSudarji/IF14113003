@@ -7,58 +7,81 @@
 				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i> &nbsp&nbsp&nbspHome </a></li>";
 
 			}else{
-				echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i><b> &nbsp&nbspHome </b></a></li>";
-				echo "<li class='dropdown'>
-		              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-calendar'></span> 
-		              <b> &nbsp&nbspKegiatan </b><span class='caret'></span></a>
-		                <ul class='dropdown-menu'>
-		                  <li class=";if($link=='lihat_kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan'><i class='fa fa-table' aria-hidden='true'></i> Lihat Kegiatan </a></li>
-		                  ";
-		                  if($_SESSION['jabatan']=="Admin"){
-		                  	echo "<li class=";if($link=='tambah_kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kegiatan </a></li>";
-		                  }
-		                echo "</ul>
-		              </li>";
-				
-				echo "<li class='dropdown'>
-		              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-envelope'></span> 
-		              <b> &nbsp&nbspSurat dan Edaran </b><span class='caret'></span></a>
-		                <ul class='dropdown-menu'>
-		                  <li class=";if($link=='lihat_surat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Surat & Edaran </a></li>
-		                  
-		                  ";
-		                  if($_SESSION['jabatan']=="Sekretaris"){
-		                  	echo "<li class=";if($link=='tambah_surat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Surat & Edaran </a></li>";
-		                  }
-		                echo "</ul>
-		              </li>";
-				echo "<li class='dropdown'>
-		              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-money'></span> 
-		              <b> &nbsp&nbspKeuangan </b><span class='caret'></span></a>
-		                <ul class='dropdown-menu'>
-		                  <li class=";if($link=='rekapitulasi'){echo 'active';}echo "><a href='".base_url()."index.php/rekapitulasi'><i class='fa fa-book' aria-hidden='true'></i> Kas-Rekapitulasi </a></li>
-		                  <li class=";if($link=='iuran'){echo 'active';}echo "><a href='".base_url()."index.php/iuran'><i class='fa fa-table' aria-hidden='true'></i> Iuran </a></li>
-		                  ";
-		                  if($_SESSION['jabatan']=="Bendahara"){
-		                  	echo "<li class=";if($link=='pembayaranIuran'){echo 'active';}echo "><a href='".base_url()."index.php/iuran/pembayaran'><i class='fa fa-plus' aria-hidden='true'></i> Pembayaran Iuran </a></li>";
-		                  }
-		                echo "</ul>
-		              </li>";
-				
-				echo "<li class='dropdown'>
-		              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-group'></span> 
-		               <b> &nbsp&nbspSumber Daya </b><span class='caret'></span></a>
-		                <ul class='dropdown-menu'>";
-		                  if($_SESSION['jabatan']=="Admin"){
-		                  	echo "
-		                  	<li class=";if($link=='view_anggota'){echo 'active';}echo "><a href='".base_url()."index.php/anggota'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>
-		                  	<li class=";if($link=='tambah_anggota'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Anggota </a></li>";
-		                  }else if($_SESSION['jabatan'] == 'Admin Kabupaten'){
+				if($_SESSION['level'] < 3){
+					echo "<li class=";if($link=='home'){echo 'active';}echo "><a href='".base_url()."'><i class='fa fa-home' aria-hidden='true'></i><b> &nbsp&nbspHome </b></a></li>";
+					echo "<li class='dropdown'>
+			              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-calendar'></span> 
+			              <b> &nbsp&nbspKegiatan </b><span class='caret'></span></a>
+			                <ul class='dropdown-menu'>
+			                  <li class=";if($link=='lihat_kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan'><i class='fa fa-table' aria-hidden='true'></i> Lihat Kegiatan </a></li>
+			                  ";
+			                  if($_SESSION['jabatan']=="Admin"){
+			                  	echo "<li class=";if($link=='tambah_kegiatan'){echo 'active';}echo "><a href='".base_url()."index.php/kegiatan/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kegiatan </a></li>";
+			                  }
+			                echo "</ul>
+			              </li>";
+					
+					echo "<li class='dropdown'>
+			              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-envelope'></span> 
+			              <b> &nbsp&nbspSurat dan Edaran </b><span class='caret'></span></a>
+			                <ul class='dropdown-menu'>
+			                  <li class=";if($link=='lihat_surat'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Surat </a></li>
+			                  <li class=";if($link=='lihat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/edaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Edaran </a></li>
+			                  ";
+			                  if($_SESSION['level']==2){
+			                  	echo "<li class=";if($link=='tambah_surat'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambahSurat'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Surat</a></li>";
+			                  	echo "<li class=";if($link=='tambah_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambahEdaran'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Edaran </a></li>";
+			                  }
+			                echo "</ul>
+			              </li>";
+					echo "<li class='dropdown'>
+			              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-money'></span> 
+			              <b> &nbsp&nbspKeuangan </b><span class='caret'></span></a>
+			                <ul class='dropdown-menu'>
+			                  <li class=";if($link=='rekapitulasi'){echo 'active';}echo "><a href='".base_url()."index.php/rekapitulasi'><i class='fa fa-book' aria-hidden='true'></i> Kas-Rekapitulasi </a></li>
+			                  <li class=";if($link=='iuran'){echo 'active';}echo "><a href='".base_url()."index.php/iuran'><i class='fa fa-table' aria-hidden='true'></i> Iuran </a></li>
+			                  ";
+			                  if($_SESSION['jabatan']=="Bendahara"){
+			                  	echo "<li class=";if($link=='pembayaranIuran'){echo 'active';}echo "><a href='".base_url()."index.php/iuran/pembayaran'><i class='fa fa-plus' aria-hidden='true'></i> Pembayaran Iuran </a></li>";
+			                  }
+			                echo "</ul>
+			              </li>";
+					
+					echo "<li class='dropdown'>
+			              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-group'></span> 
+			               <b> &nbsp&nbspSumber Daya </b><span class='caret'></span></a>
+			                <ul class='dropdown-menu'>";
+			                  
+			                  	echo "<li class=";if($link=='view_anggota'){echo 'active';}echo "><a href='".base_url()."index.php/anggota'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
+			                  	if($_SESSION['jabatan']=='Admin'){
+			                  		echo "<li class=";if($link=='tambah_anggota'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Anggota </a></li>";
+			                  	}
+			                  
+			                echo "</ul>
+			              </li>";
+			          }else	if($_SESSION['level'] == 3){
+			          	echo "<li class='dropdown'>
+			              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-envelope'></span> 
+			              <b> &nbsp&nbspSurat dan Edaran </b><span class='caret'></span></a>
+			                <ul class='dropdown-menu'>
+			                  <li class=";if($link=='lihat_surat'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Surat </a></li>
+			                  <li class=";if($link=='lihat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/edaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Edaran </a></li>
+			                  ";
+			                  
+		                  	echo "<li class=";if($link=='tambah_surat'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambahSurat'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Surat</a></li>";
+		                  	echo "<li class=";if($link=='tambah_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambahEdaran'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Edaran </a></li>";
+			                echo "</ul>
+			              </li>";
+
+			          	echo "<li class='dropdown'>
+			              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-group'></span> 
+			               <b> &nbsp&nbspSumber Daya </b><span class='caret'></span></a>
+			                <ul class='dropdown-menu'>";
 		                  	echo "
 		                  	<li class=";if($link=='view_anggota_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/view'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
-		                  }
-		                echo "</ul>
-		              </li>";
+			                echo "</ul>
+			              </li>";
+			          }
 			}
 	  ?>
       </ul>
