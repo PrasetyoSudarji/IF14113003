@@ -4,84 +4,157 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Iuran extends CI_Controller {
     
     public function index(){
-    	$listIuran = $this->Model->list_data_all('tbl_iuran')->result_array();
-    	$listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
-    	
-		$data = array(
-			'listAnggota' =>$listAnggota,
-			'listIuran' => $listIuran,
-			'page' => 'iuran',
-			'link' => 'iuran'
-		);	
-		
-		$this->load->view('template/wrapper', $data);
+    	if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+            
+	    	$listIuran = $this->Model->list_data_all('tbl_iuran')->result_array();
+	    	$listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
+	    	
+			$data = array(
+				'listAnggota' =>$listAnggota,
+				'listIuran' => $listIuran,
+				'page' => 'iuran',
+				'link' => 'iuran'
+			);	
+			
+			$this->load->view('template/wrapper', $data);
+		}
     }
 
     public function pembayaran(){
-    	$listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
-    	$queryDojo = $this->Model->ambil("kode_dojo",$_SESSION['kode_dojo'],"tbl_dojo")->result_array();
+    	if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
 
-    	$data = array(
-    		'listAnggota' =>$listAnggota,
-    		'dataDojo' =>$queryDojo,
-			'page' => 'pembayaranIuran',
-			'link' => 'pembayaranIuran'
-		);	
-		
-		$this->load->view('template/wrapper', $data);	
+            if($_SESSION['jabatan'] != 'Bendahara'){
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }else{
+		    	$listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
+		    	$queryDojo = $this->Model->ambil("kode_dojo",$_SESSION['kode_dojo'],"tbl_dojo")->result_array();
+
+		    	$data = array(
+		    		'listAnggota' =>$listAnggota,
+		    		'dataDojo' =>$queryDojo,
+					'page' => 'pembayaranIuran',
+					'link' => 'pembayaranIuran'
+				);	
+				
+				$this->load->view('template/wrapper', $data);
+			}
+		}
     }
 
     public function proses(){
-    	extract($_POST);
+    	if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
 
-    	$queryKodeIuran = $this->Model->max('kode_iuran','tbl_iuran') + 1;
+            if($_SESSION['jabatan'] != 'Bendahara'){
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }else{
+		    	extract($_POST);
 
-    	$date = date_format(date_create($inputWaktuPembayaran),'Y-m-d');
+		    	$queryKodeIuran = $this->Model->max('kode_iuran','tbl_iuran') + 1;
 
-    	$queryIuran = $this->Model->ambil("id_anggota",$inputId,"tbl_iuran")->result_array();
+		    	$date = date_format(date_create($inputWaktuPembayaran),'Y-m-d');
 
-    	$validator = true;
+		    	$queryIuran = $this->Model->ambil("id_anggota",$inputId,"tbl_iuran")->result_array();
 
-    	$month1 = date('n',strtotime($date));
+		    	$validator = true;
 
-    	foreach ($queryIuran as $key => $value) {
-    		# code...
-    		$month2 = date('n',strtotime($value['waktu_iuran']));
-    		if($month1 == $month2){
-    			$validator = false;
-    		}
-    	}
+		    	$month1 = date('n',strtotime($date));
 
-    	if($validator){
-    		$dataInsert = array('kode_iuran' => $queryKodeIuran,
-						    	'id_anggota' => $inputId,
-						    	'kode_dojo' => $inputDojo,
-						    	'besaran_iuran' => $inputBesaranPembayaran,
-						    	'waktu_iuran' => $date);
+		    	foreach ($queryIuran as $key => $value) {
+		    		# code...
+		    		$month2 = date('n',strtotime($value['waktu_iuran']));
+		    		if($month1 == $month2){
+		    			$validator = false;
+		    		}
+		    	}
 
-	    	$queryInsert = $this->Model->simpan_data($dataInsert,'tbl_iuran');
+		    	if($validator){
+		    		$dataInsert = array('kode_iuran' => $queryKodeIuran,
+								    	'id_anggota' => $inputId,
+								    	'kode_dojo' => $inputDojo,
+								    	'besaran_iuran' => $inputBesaranPembayaran,
+								    	'waktu_iuran' => $date);
 
-			$alert = "<script>
-					alert('Input Success !!');
-					window.location.href='".base_url()."index.php/iuran/pembayaran';
-					</script>";
-			$data = array(
-				'alert' => $alert,
-				'page' => 'notification',
-				'link' => 'pembayaranIuran'
-			);
-			$this->load->view('template/wrapper', $data);
-		}else{
-			$alert = "<script>
-					alert('Anggota ini telah membayar iuran !!');
-					window.location.href='".base_url()."index.php/iuran/pembayaran';
-					</script>";
-			$data = array(
-				'alert' => $alert,
-				'page' => 'notification',
-				'link' => 'pembayaranIuran'
-			);
-			$this->load->view('template/wrapper', $data);
+			    	$queryInsert = $this->Model->simpan_data($dataInsert,'tbl_iuran');
+
+					$alert = "<script>
+							alert('Input Success !!');
+							window.location.href='".base_url()."index.php/iuran/pembayaran';
+							</script>";
+					$data = array(
+						'alert' => $alert,
+						'page' => 'notification',
+						'link' => 'pembayaranIuran'
+					);
+					$this->load->view('template/wrapper', $data);
+				}else{
+					$alert = "<script>
+							alert('Anggota ini telah membayar iuran !!');
+							window.location.href='".base_url()."index.php/iuran/pembayaran';
+							</script>";
+					$data = array(
+						'alert' => $alert,
+						'page' => 'notification',
+						'link' => 'pembayaranIuran'
+					);
+					$this->load->view('template/wrapper', $data);
+				}
+			}
 		}
 		
     }
