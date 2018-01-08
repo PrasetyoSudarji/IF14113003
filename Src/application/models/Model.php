@@ -68,4 +68,16 @@ class Model extends CI_Model {
         return $this->db->get_where('tbl_dojo', array($param_id => $id));
     }
 
+    function getKabupatenKota($param_id,$id){
+        return $this->db->get_where('tbl_kabupaten_kota', array($param_id => $id));
+    }
+
+    function getProvinsi($param_id,$id){
+        return $this->db->get_where('tbl_provinsi', array($param_id => $id));
+    }
+
+     function getNegara($param_id,$id){
+        return $this->db->get_where('tbl_negara', array($param_id => $id));
+    }
+
 }

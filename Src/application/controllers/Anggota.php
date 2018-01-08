@@ -16,7 +16,7 @@ class Anggota extends CI_Controller {
 		$this->load->view('template/wrapper', $data);
     }
 
-    public function view(){
+    public function viewKabupatenKota(){
 
         $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
         
@@ -24,6 +24,32 @@ class Anggota extends CI_Controller {
             'listAnggota' => $listAnggota,
             'page' => 'view_anggota_kabupaten',
             'link' => 'view_anggota_kabupaten'
+        );  
+        
+        $this->load->view('template/wrapper', $data);
+    }
+
+    public function viewProvinsi(){
+
+        $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
+        
+        $data = array(
+            'listAnggota' => $listAnggota,
+            'page' => 'view_provinsi',
+            'link' => 'view_provinsi'
+        );  
+        
+        $this->load->view('template/wrapper', $data);
+    }
+
+    public function viewNasional(){
+
+        $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
+        
+        $data = array(
+            'listAnggota' => $listAnggota,
+            'page' => 'view_nasional',
+            'link' => 'view_nasional'
         );  
         
         $this->load->view('template/wrapper', $data);
@@ -79,8 +105,6 @@ class Anggota extends CI_Controller {
     						'DAN IV',
     						'DAN V');
     	
-    	$listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
-        
 		$data = array(
 			'listJabatan' => $listJabatan,
 			'listTingkatan' =>$listTingkatan,
@@ -89,6 +113,135 @@ class Anggota extends CI_Controller {
 		);	
 		
 		$this->load->view('template/wrapper', $data);
+    }
+
+    public function pindah(){
+
+        $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
+        $listDojo = $this->Model->list_data_all('tbl_dojo')->result_array();
+        
+        $data = array(
+            'listAnggota' => $listAnggota,
+            'listDojo' =>$listDojo,
+            'page' => 'pindah_anggota',
+            'link' => 'pindah_anggota'
+        );  
+        
+        $this->load->view('template/wrapper', $data);
+    }
+
+    public function viewRequestPindah(){
+
+        $listRequest = $this->Model->list_data_all('tbl_perpindahan')->result_array();
+        
+        $data = array(
+            'listRequest' => $listRequest,
+            'page' => 'lihat_request_perpindahan',
+            'link' => 'lihat_request_perpindahan'
+        );  
+        
+        $this->load->view('template/wrapper', $data);
+    }
+
+    public function prosesPindah(){
+
+        extract($_POST);
+
+        $kode_perpindahan = $this->getUniqueIDPerpindahan() + 1;
+        $kode_dojo_asal = null;
+
+        $queryUser = $this->Model->ambil('id',$inputId,'tbl_user')->result_array();
+        foreach ($queryUser as $key => $value) {
+            # code...
+            $kode_dojo_asal = $value['kode_dojo'];
+        }
+
+        $dataInsert = array(
+            'kode_perpindahan' => $kode_perpindahan,
+            'id_anggota' => $inputId,
+            'kode_dojo_asal' => $kode_dojo_asal,
+            'kode_dojo_tujuan' => $inputDojo,
+            'status_perpindahan' => 'Menunggu Persetujuan'
+         );
+
+        $queryInsert = $this->Model->simpan_data($dataInsert,'tbl_perpindahan');  
+        
+        $alert = "<script>
+                    alert('Request berhasil di ajukan');
+                    window.location.href='".base_url()."index.php/anggota/pindah';
+                    </script>";
+        $data = array(
+            'alert' => $alert,
+            'page' => 'notification',
+            'link' => 'pindah_anggota'
+        );  
+        
+        $this->load->view('template/wrapper', $data);
+    }
+
+    public function terimaPerpindahan(){
+
+        extract($_GET);
+
+        $infoUser = null;
+
+        $queryPerpindahan = $this->Model->ambil('kode_perpindahan',$id,'tbl_perpindahan')->result_array();
+        foreach ($queryPerpindahan as $key => $value) {
+            # code...
+            $dataUpdate = array(
+                'kode_dojo' => $value['kode_dojo_tujuan']
+             );
+
+            $queryUpdate = $this->Model->update("id",$value['id_anggota'],"tbl_user",$dataUpdate);
+
+            $dataUpdate2 = array(
+                'status_perpindahan' => 'Diterima'
+             );
+
+            $queryUpdate2 = $this->Model->update("kode_perpindahan",$value['kode_perpindahan'],"tbl_perpindahan",$dataUpdate2);
+        }
+
+        $alert = "<script>
+                alert('Request berhasil disetujui!!');
+                window.location.href='".base_url()."index.php/anggota/viewRequestPindah';
+                </script>";
+        $data = array(
+            'alert' => $alert,
+            'page' => 'lihat_request_perpindahan',
+            'link' => 'pindah_anggota'
+        );  
+            
+        $this->load->view('notification', $data);
+    }
+
+    public function tolakPerpindahan(){
+
+        extract($_GET);
+
+        $infoUser = null;
+
+        $queryPerpindahan = $this->Model->ambil('kode_perpindahan',$id,'tbl_perpindahan')->result_array();
+        foreach ($queryPerpindahan as $key => $value) {
+            # code...
+
+            $dataUpdate = array(
+                'status_perpindahan' => 'Ditolak'
+             );
+
+            $queryUpdate = $this->Model->update("kode_perpindahan",$value['kode_perpindahan'],"tbl_perpindahan",$dataUpdate);
+        }
+
+        $alert = "<script>
+                alert('Request berhasil ditolak!!');
+                window.location.href='".base_url()."index.php/anggota/viewRequestPindah';
+                </script>";
+        $data = array(
+            'alert' => $alert,
+            'page' => 'lihat_request_perpindahan',
+            'link' => 'pindah_anggota'
+        );  
+            
+        $this->load->view('notification', $data);
     }
 
     public function proses(){
@@ -207,7 +360,7 @@ class Anggota extends CI_Controller {
         $this->load->view('ajaxEditUser', $data);
     }
 
-     public function update(){
+    public function update(){
         extract($_POST);
 
         $dataUpdate = array(
@@ -219,7 +372,7 @@ class Anggota extends CI_Controller {
 
         $alert = "<script>
                     alert('Update Success!!');
-                    window.location.href='".base_url()."index.php/anggota/view';
+                    window.location.href='".base_url()."index.php/anggota/viewKabupatenKota';
                     </script>";
         $data = array(
                 'alert' => $alert,
@@ -241,6 +394,14 @@ class Anggota extends CI_Controller {
     	$intID = (int) $strID + 1; #return possible int value to make an unique id 
     	$result = $level.$intID; #return final unique id
     	return (int) $result;
+    }
+
+    function getUniqueIDPerpindahan(){
+        #fuction to get unique ID for tbl_user
+        
+        $maxID = $this->Model->maxFrom('kode_perpindahan','tbl_perpindahan');
+        
+        return (int) $maxID;
     }
 	
 }
