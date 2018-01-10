@@ -197,68 +197,7 @@ class Anggota extends CI_Controller {
         }
     }
 
-    public function tambah(){
-        if(!$this->session->has_userdata('login')){
-            $alert = "<script>
-                    alert('Access ditolak !!');
-                    window.location.href='".base_url()."';
-                    </script>";
-            $data = array(
-                'alert' => $alert,
-                'page' => 'notification',
-                'link' => 'home'
-            );  
-        
-            $this->load->view('template/wrapper', $data);
-        }else{
-
-            if($_SESSION['jabatan'] != 'Admin'){
-                $alert = "<script>
-                    alert('Access ditolak !!');
-                    window.location.href='".base_url()."';
-                    </script>";
-                $data = array(
-                    'alert' => $alert,
-                    'page' => 'notification',
-                    'link' => 'home'
-                );  
-            
-                $this->load->view('template/wrapper', $data);
-            }else{
-
-            	$listJabatan = array('Anggota',
-            						'Admin',
-            						'Asisten',
-            						'Bendahara',
-            						'Ketua Dojo',
-            						'Pelatih',
-            						'Pelatih Utama',
-            						'Sekretaris');
-
-            	$listTingkatan = array('KYU VI',
-            						'KYU V',
-            						'KYU IV',
-            						'KYU III',
-            						'KYU II',
-            						'KYU I',
-            						'DAN I',
-            						'DAN II',
-            						'DAN III',
-            						'DAN IV',
-            						'DAN V');
-            	
-        		$data = array(
-        			'listJabatan' => $listJabatan,
-        			'listTingkatan' =>$listTingkatan,
-        			'page' => 'tambah_anggota',
-        			'link' => 'tambah_anggota'
-        		);	
-        		
-        		$this->load->view('template/wrapper', $data);
-            }
-        }
-    }
-
+    
     public function pindah(){
         if(!$this->session->has_userdata('login')){
             $alert = "<script>
@@ -274,20 +213,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] != 'Admin'){
-                $alert = "<script>
-                    alert('Access ditolak !!');
-                    window.location.href='".base_url()."';
-                    </script>";
-                $data = array(
-                    'alert' => $alert,
-                    'page' => 'notification',
-                    'link' => 'home'
-                );  
-            
-                $this->load->view('template/wrapper', $data);
-            }else{
-
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
                 $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
                 $listDojo = $this->Model->list_data_all('tbl_dojo')->result_array();
                 
@@ -298,6 +224,18 @@ class Anggota extends CI_Controller {
                     'link' => 'pindah_anggota'
                 );  
                 
+                $this->load->view('template/wrapper', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
                 $this->load->view('template/wrapper', $data);
             }
         }
@@ -319,7 +257,18 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] != 'Admin'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+                $listRequest = $this->Model->list_data_all('tbl_perpindahan')->result_array();
+                
+                $data = array(
+                    'listRequest' => $listRequest,
+                    'page' => 'lihat_request_perpindahan',
+                    'link' => 'lihat_request_perpindahan'
+                );  
+                
+                $this->load->view('template/wrapper', $data);
+            }else{
+
                 $alert = "<script>
                     alert('Access ditolak !!');
                     window.location.href='".base_url()."';
@@ -330,17 +279,6 @@ class Anggota extends CI_Controller {
                     'link' => 'home'
                 );  
             
-                $this->load->view('template/wrapper', $data);
-            }else{
-
-                $listRequest = $this->Model->list_data_all('tbl_perpindahan')->result_array();
-                
-                $data = array(
-                    'listRequest' => $listRequest,
-                    'page' => 'lihat_request_perpindahan',
-                    'link' => 'lihat_request_perpindahan'
-                );  
-                
                 $this->load->view('template/wrapper', $data);
             }
         }
@@ -362,23 +300,10 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] != 'Admin'){
-                $alert = "<script>
-                    alert('Access ditolak !!');
-                    window.location.href='".base_url()."';
-                    </script>";
-                $data = array(
-                    'alert' => $alert,
-                    'page' => 'notification',
-                    'link' => 'home'
-                );  
-            
-                $this->load->view('template/wrapper', $data);
-            }else{
-
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
                 extract($_POST);
 
-                $kode_perpindahan = $this->getUniqueIDPerpindahan() + 1;
+                $kode_perpindahan = $this->getUniqueID('kode_perpindahan','tbl_perpindahan') + 1;
                 $kode_dojo_asal = null;
 
                 $queryUser = $this->Model->ambil('id',$inputId,'tbl_user')->result_array();
@@ -408,6 +333,19 @@ class Anggota extends CI_Controller {
                 );  
                 
                 $this->load->view('template/wrapper', $data);
+            }else{
+
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
             }
         }
     }
@@ -427,21 +365,8 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] != 'Admin'){
-                $alert = "<script>
-                    alert('Access ditolak !!');
-                    window.location.href='".base_url()."';
-                    </script>";
-                $data = array(
-                    'alert' => $alert,
-                    'page' => 'notification',
-                    'link' => 'home'
-                );  
-            
-                $this->load->view('template/wrapper', $data);
-            }else{
-
-                extract($_GET);
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+                      extract($_GET);
 
                 $infoUser = null;
 
@@ -460,18 +385,18 @@ class Anggota extends CI_Controller {
 
                     $queryUpdate2 = $this->Model->update("kode_perpindahan",$value['kode_perpindahan'],"tbl_perpindahan",$dataUpdate2);
                 }
-
+            }else{
                 $alert = "<script>
-                        alert('Request berhasil disetujui!!');
-                        window.location.href='".base_url()."index.php/anggota/viewRequestPindah';
-                        </script>";
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
                 $data = array(
                     'alert' => $alert,
-                    'page' => 'lihat_request_perpindahan',
-                    'link' => 'pindah_anggota'
+                    'page' => 'notification',
+                    'link' => 'home'
                 );  
-                    
-                $this->load->view('notification', $data);
+            
+                $this->load->view('template/wrapper', $data);
             }
         }
     }
@@ -491,20 +416,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] != 'Admin'){
-                $alert = "<script>
-                    alert('Access ditolak !!');
-                    window.location.href='".base_url()."';
-                    </script>";
-                $data = array(
-                    'alert' => $alert,
-                    'page' => 'notification',
-                    'link' => 'home'
-                );  
-            
-                $this->load->view('template/wrapper', $data);
-            }else{
-
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
                 extract($_GET);
 
                 $infoUser = null;
@@ -519,23 +431,23 @@ class Anggota extends CI_Controller {
 
                     $queryUpdate = $this->Model->update("kode_perpindahan",$value['kode_perpindahan'],"tbl_perpindahan",$dataUpdate);
                 }
-
+            }else{
                 $alert = "<script>
-                        alert('Request berhasil ditolak!!');
-                        window.location.href='".base_url()."index.php/anggota/viewRequestPindah';
-                        </script>";
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
                 $data = array(
                     'alert' => $alert,
-                    'page' => 'lihat_request_perpindahan',
-                    'link' => 'pindah_anggota'
+                    'page' => 'notification',
+                    'link' => 'home'
                 );  
-                    
-                $this->load->view('notification', $data);
+            
+                $this->load->view('template/wrapper', $data);
             }
         }
     }
 
-    public function proses(){
+    public function request(){
         if(!$this->session->has_userdata('login')){
             $alert = "<script>
                     alert('Access ditolak !!');
@@ -550,7 +462,18 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] != 'Admin'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+                
+                $listRequest = $this->Model->list_data_all('tbl_request')->result_array();
+
+                $data = array(
+                    'listRequest' => $listRequest,
+                    'page' => 'lihat_request_anggota',
+                    'link' => 'lihat_request_anggota'
+                );  
+                
+                $this->load->view('template/wrapper', $data);
+            }else{
                 $alert = "<script>
                     alert('Access ditolak !!');
                     window.location.href='".base_url()."';
@@ -562,99 +485,187 @@ class Anggota extends CI_Controller {
                 );  
             
                 $this->load->view('template/wrapper', $data);
-            }else{
-            	extract($_POST);
-
-            	$listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
-            	$username = md5($inputUsername);
-            	$password = md5($inputPassword);
-            	$alert = null;
-
-            	$level = 0;
-            	if($inputJabatan=='Anggota'){
-            		$level = 1;
-            	}else if($inputJabatan=='Admin'){
-            		$level = 2;
-            	}else if($inputJabatan=='Asisten'){
-            		$level = 3;
-            	}else if($inputJabatan=='Bendahara'){
-            		$level = 4;
-            	}else if($inputJabatan=='Ketua Dojo'){
-            		$level = 5;
-            	}else if($inputJabatan=='Pelatih'){
-            		$level = 6;
-            	}else if($inputJabatan=='Pelatih Utama'){
-            		$level = 7;
-            	}else if($inputJabatan=='Sekretaris'){
-            		$level = 8;
-            	}
-
-            	$id = $this->getUniqueID($level);
-            	$validator = true;
-            	foreach ($listAnggota as $key => $value) {
-            		# code...
-            		if($value['username']==$username){
-        				$alert = "<script>
-        							alert('Username Already Exist!!');
-        							window.location.href='".base_url()."index.php/anggota/tambah';
-        							</script>";
-        				$data = array(
-        					'alert' => $alert,
-        					'page' => 'notification',
-        					'link' => 'tambah_anggota'
-        				);	
-        				
-        				$this->load->view('template/wrapper', $data);
-            		}
-            	}
-
-                if($inputPassword != $inputPasswordConfirm){
-                    $alert = "<script>
-                                alert('Password does not match!!');
-                                window.location.href='".base_url()."index.php/anggota/tambah';
-                                </script>";
-                    $data = array(
-                        'alert' => $alert,
-                        'page' => 'notification',
-                        'link' => 'tambah_anggota'
-                    );  
-                    
-                    $this->load->view('template/wrapper', $data);
-                }else{
-                    
-                    $dataInsert = array('id' => $id,
-                                    'nama' => $inputNama,
-                                    'status' => 'aktif',
-                                    'level' => $level,
-                                    'username' => $username,
-                                    'password' => $password,
-                                    'kode_dojo' => $_SESSION['kode_dojo'],
-                                    'kode_kabupaten_kota' => null,
-                                    'kode_provinsi' => null,
-                                    'kode_negara' => null,
-                                    'tingkatan' => $inputTingkatan,
-                                    'atlit' => null,
-                                    'juri' => null,
-                                    'jabatan' => $inputJabatan);
-
-                    $queryInsert = $this->Model->simpan_data($dataInsert,'tbl_user');   
-                    $alert = "<script>
-                                alert('Input Success!!');
-                                window.location.href='".base_url()."index.php/anggota/tambah';
-                                </script>";
-                    $data = array(
-                        'alert' => $alert,
-                        'page' => 'notification',
-                        'link' => 'tambah_anggota'
-                    );  
-                    
-                    $this->load->view('template/wrapper', $data);
-                }
             }
         }
     }
 
-    public function edit(){
+    public function prosesRequest(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+        	extract($_POST);
+            $id = $this->getUniqueID('kode_request','tbl_request')+1;
+                
+            $dataInsert = array(
+                'kode_request' => $id,
+                'id_anggota' => $_SESSION['login'],
+                'kode_dojo' => $inputDojo,
+                'status_request' => 'Menunggu Persetujuan'
+            );
+
+            $queryInsert = $this->Model->simpan_data($dataInsert,'tbl_request');   
+            $alert = "<script>
+                        alert('Request Success!!');
+                        window.location.href='".base_url()."';
+                        </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+            
+            $this->load->view('template/wrapper', $data);
+        }
+    }
+
+    public function terimaAnggota(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+                extract($_GET);
+
+                $infoUser = null;
+
+                $queryRequest = $this->Model->ambil('kode_request',$id,'tbl_request')->result_array();
+                foreach ($queryRequest as $key => $value) {
+                    # code...
+                    $dataUpdate = array(
+                        'status' => 'active',
+                        'kode_dojo' => $value['kode_dojo'],
+                        'jabatan' => 'Anggota'
+                     );
+
+                    $queryUpdate = $this->Model->update("id",$value['id_anggota'],"tbl_user",$dataUpdate);
+
+                    $dataUpdate2 = array(
+                        'status_request' => 'Diterima'
+                     );
+
+                    $queryUpdate2 = $this->Model->update("kode_request",$value['kode_request'],"tbl_request",$dataUpdate2);
+                }
+
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function tolakAnggota(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+                
+                extract($_GET);
+
+                $infoUser = null;
+
+                $queryRequest = $this->Model->ambil('kode_request',$id,'tbl_request')->result_array();
+                foreach ($queryRequest as $key => $value) {
+                    # code...
+
+                    $dataUpdate = array(
+                        'status_request' => 'Ditolak'
+                     );
+
+                    $queryUpdate = $this->Model->update("kode_request",$value['kode_request'],"tbl_request",$dataUpdate);
+                }
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function updateTingkatan(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+            extract($_POST);
+
+            $dataUpdate = array(
+                'tingkatan' => $inputTingkatan
+            );
+
+            $queryUpdate = $this->Model->update("id",$_SESSION['login'],"tbl_user",$dataUpdate);
+
+            $alert = "<script>
+                        alert('Update Profile Success!!');
+                        window.location.href='".base_url()."';
+                        </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+            
+            $this->load->view('template/wrapper', $data);
+        }
+    }
+
+    public function editByKabKot(){ #this function used by admin kabupaten kota
 
         if(!$this->session->has_userdata('login')){
             $alert = "<script>
@@ -705,12 +716,67 @@ class Anggota extends CI_Controller {
                     'link' => 'view_anggota_kabupaten'
                 );  
                 
-                $this->load->view('ajaxEditUser', $data);
+                $this->load->view('ajaxEdit', $data);
             }
         }
     }
 
-    public function update(){
+    public function editUser(){ #this function used by admin dojo
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+               
+                extract($_GET);
+
+                $listJabatan = array('Admin',
+                                    'Anggota',
+                                    'Asisten',
+                                    'Bendahara',
+                                    'Ketua',
+                                    'Pelatih',
+                                    'Sekretaris',
+                                );
+
+                $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
+
+                $data = array(
+                    'listJabatan' => $listJabatan,
+                    'infoUser' => $queryUser,
+                    'page' => 'edit_anggota_kabupaten',
+                    'link' => 'view_anggota_kabupaten'
+                );  
+                
+                $this->load->view('ajaxEditUser', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function updateByKabKot(){
         if(!$this->session->has_userdata('login')){
             $alert = "<script>
                     alert('Access ditolak !!');
@@ -762,25 +828,63 @@ class Anggota extends CI_Controller {
         }   
     }
 
-    function getUniqueID($level){
-    	#fuction to get unique ID for tbl_user
-		$maxID = 0;
-    	if($level != 0){
-    		$maxID = $this->Model->maxWhere('id','level',$level,'tbl_user');
-    	}
+    public function updateUserByAdmin(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
 
-    	$strID = substr($maxID, 1); #return string max value of users in the level ex : id = 12, will return 2
-    	$intID = (int) $strID + 1; #return possible int value to make an unique id 
-    	$result = $level.$intID; #return final unique id
-    	return (int) $result;
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+                extract($_POST);
+
+                $dataUpdate = array(
+                    'jabatan' =>$inputJabatan,
+                );  
+
+                $queryUpdate = $this->Model->update("id",$inputId,"tbl_user",$dataUpdate);
+
+                $alert = "<script>
+                            alert('Update Success!!');
+                            window.location.href='".base_url()."index.php/anggota/';
+                            </script>";
+                $data = array(
+                        'alert' => $alert,
+                        'page' => 'notification',
+                        'link' => 'view_anggota'
+                    );  
+                    
+                $this->load->view('template/wrapper', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }   
     }
 
-    function getUniqueIDPerpindahan(){
-        #fuction to get unique ID for tbl_user
+    function getUniqueID($id,$table){
+    	#fuction to get unique ID for tbl_user
         
-        $maxID = $this->Model->maxFrom('kode_perpindahan','tbl_perpindahan');
+        $maxID = $this->Model->maxFrom($id,$table);
         
         return (int) $maxID;
     }
-	
+
 }

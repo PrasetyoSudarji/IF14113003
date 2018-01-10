@@ -9,7 +9,7 @@
 </div>
 <script language='javascript'>
 
-  function updateUser(id) {
+  function updateUserByKabKot(id) {
       var ajaxRequest;
     
       try {
@@ -34,7 +34,38 @@
           ajaxTampil.innerHTML = ajaxRequest.responseText;
         }
       }
-      var url="<?=base_url()?>index.php/anggota/edit?id="+id;
+      var url="<?=base_url()?>index.php/anggota/editByKabKot?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+  }
+
+  function editUserByAdmin(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          var ajaxTampil = document.getElementById('placeholderUser');
+          ajaxTampil.innerHTML = ajaxRequest.responseText;
+        }
+      }
+      var url="<?=base_url()?>index.php/anggota/editUser?id="+id;
       
       ajaxRequest.open("GET",url,true);
       ajaxRequest.send(null);
@@ -133,7 +164,7 @@
       ajaxRequest.send(null);
   }
 
-  function acceptRequest(id) {
+  function acceptRequestPerpindahan(id) {
       var ajaxRequest;
     
       try {
@@ -165,7 +196,7 @@
       }
   }
 
-  function declineRequest(id) {
+  function declineRequestPerpindahan(id) {
       var ajaxRequest;
     
       try {
@@ -193,6 +224,70 @@
         if (ajaxRequest.readyState == 4) {
           alert('Request berhasil ditolak!!');
           window.location.href='<?=base_url()?>index.php/anggota/viewRequestPindah';
+        }
+      }
+  }
+
+  function acceptRequestAnggota(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      var url="<?=base_url()?>index.php/anggota/terimaAnggota?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          alert('Request berhasil disetujui!!');
+          window.location.href='<?=base_url()?>index.php/anggota/request';
+        }
+      }
+  }
+
+  function declineRequestAnggota(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      var url="<?=base_url()?>index.php/anggota/tolakAnggota?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          alert('Request berhasil ditolak!!');
+          window.location.href='<?=base_url()?>index.php/anggota/request';
         }
       }
   }

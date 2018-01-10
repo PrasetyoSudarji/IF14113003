@@ -40,7 +40,7 @@
 						        			echo "<td> ".$value['atlit']." </td>";
 						        			echo "<td> ".$value['juri']." </td>";
 						        			echo "<td> ".$value['jabatan']." </td>";
-						        			echo "<td> <button class='button' onclick='updateUser(".$value['id'].");'> Update </button> </td>";
+						        			echo "<td> <button class='button' onclick='updateUserByKabKot(".$value['id'].");'> Update </button> </td>";
 						        			echo "</tr>";
 						        			$no++;
 					        			}

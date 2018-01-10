@@ -30,8 +30,9 @@ class Login extends CI_Controller {
 					window.location.href='".base_url()."index.php/Home';
 					</script>";
 				$_SESSION['login'] = $queryuser['id'];
-				$_SESSION['level'] = $queryuser['level'];
+				$_SESSION['status'] = $queryuser['status'];
 				$_SESSION['nama'] = $queryuser['nama'];
+				$_SESSION['level'] = $queryuser['level'];
 				$_SESSION['jabatan'] = $queryuser['jabatan'];
 				$_SESSION['kode_dojo'] = $queryuser['kode_dojo'];
 				$_SESSION['kode_kabupaten_kota'] = $queryuser['kode_kabupaten_kota'];

@@ -6,7 +6,6 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$infoDojo = null;
-		$nameUser = null;
 		$listAnggota = null;
 		$iuran = 0;
 		$hutang = 0;
@@ -17,7 +16,6 @@ class Home extends CI_Controller {
 		if($this->session->has_userdata('login')){
 			$query = $this->Model->ambil("id",$_SESSION['login'],"tbl_user");
 			foreach($query->result_array() as $result){
-				$nameUser = $result['nama'];
 				if($_SESSION['jabatan']== 'Admin Kabupaten'){
 					$listAnggota = $this->Model->list_data_all('tbl_user')->result_array();
 				}else{
@@ -78,15 +76,34 @@ class Home extends CI_Controller {
 			$_SESSION['kode_provinsi'] = null;
 			$_SESSION['kode_negara'] = null;
 		}
+
+		$queryUser = $this->Model->ambil("id",$_SESSION['login'],"tbl_user")->result_array();
+		$queryListDojo = $this->Model->list_data_all('tbl_dojo')->result_array();
+		$listTingkatan = array('KYU VI',
+            						'KYU V',
+            						'KYU IV',
+            						'KYU III',
+            						'KYU II',
+            						'KYU I',
+            						'DAN I',
+            						'DAN II',
+            						'DAN III',
+            						'DAN IV',
+            						'DAN V');
+		$queryRequest = $this->Model->list_data_all('tbl_request')->result_array();
 		
 		$data = array(
+			'listRequest' =>$queryRequest,
+			'infoUser' => $queryUser,
+			'listTingkatan' => $listTingkatan,
+			'listDojo' => $queryListDojo,
 			'saldoDojo' => $saldoDojo,
 			'listAnggota' => $listAnggota,
-			'nameUser' => $nameUser,
 			'page' => 'home',
 			'link' => 'home'
 		);
 
 		$this->load->view('template/wrapper', $data);
 	}
+
 }

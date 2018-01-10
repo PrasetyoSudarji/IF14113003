@@ -44,7 +44,13 @@
 					        				echo "<td> Pengurus </td>";
 					        			}
 					        			echo "<td> ".$value['jabatan']." </td>";
-					        			echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> </td>";
+					        			if($_SESSION['jabatan']=='Admin' || $_SESSION['jabatan'] == 'Ketua'){
+					        				echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> ";
+					        				echo "<button class='button' onclick='editUserByAdmin(".$value['id'].");'> Edit </button> </td>";
+					        			}else{
+					        				echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> </td>";
+					        			}
+					        			
 					        			echo "</tr>";
 					        			$no++;
 					        		}
