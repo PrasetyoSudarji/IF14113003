@@ -1,10 +1,12 @@
 <?php
 	foreach ($infoUser as $key => $value) {
 		# code...
-	if($_SESSION['level'] < 4 ){
+	if($_SESSION['level'] < 3 ){
 		echo "<form action='".base_url()."index.php/anggota'>";
 	}else{
-		if($_SESSION['level'] == 4){
+		if($_SESSION['level'] == 3){
+			echo "<form action='".base_url()."index.php/anggota/viewKabupatenKota'>";
+		}else if($_SESSION['level'] == 4){
 			echo "<form action='".base_url()."index.php/anggota/viewProvinsi'>";
 		}else if($_SESSION['level'] == 5){
 			echo "<form action='".base_url()."index.php/anggota/viewNasional'>";

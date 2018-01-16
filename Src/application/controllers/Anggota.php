@@ -158,6 +158,49 @@ class Anggota extends CI_Controller {
         }
     }
 
+    public function viewMaster(){
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] != 6){
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }else{
+
+                $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
+                
+                $data = array(
+                    'listAnggota' => $listAnggota,
+                    'page' => 'view_anggota_master',
+                    'link' => 'view_anggota_master'
+                );  
+                
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
     public function viewUser(){
         if(!$this->session->has_userdata('login')){
             $alert = "<script>
@@ -213,7 +256,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
                 $listDojo = $this->Model->list_data_all('tbl_dojo')->result_array();
                 
@@ -257,7 +300,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 $listRequest = $this->Model->list_data_all('tbl_perpindahan')->result_array();
                 
                 $data = array(
@@ -300,7 +343,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 extract($_POST);
 
                 $kode_perpindahan = $this->getUniqueID('kode_perpindahan','tbl_perpindahan') + 1;
@@ -365,7 +408,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                       extract($_GET);
 
                 $infoUser = null;
@@ -416,7 +459,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 extract($_GET);
 
                 $infoUser = null;
@@ -462,7 +505,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 
                 $listRequest = $this->Model->list_data_all('tbl_request')->result_array();
 
@@ -543,7 +586,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 extract($_GET);
 
                 $infoUser = null;
@@ -597,7 +640,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 
                 extract($_GET);
 
@@ -712,7 +755,7 @@ class Anggota extends CI_Controller {
                     'listJuri' => $listJuri,
                     'listAtlit' =>$listAtlit,
                     'infoUser' => $queryUser,
-                    'page' => 'edit_anggota_kabupaten',
+                    'page' => 'view_anggota_kabupaten',
                     'link' => 'view_anggota_kabupaten'
                 );  
                 
@@ -737,7 +780,7 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                
                 extract($_GET);
 
@@ -755,11 +798,219 @@ class Anggota extends CI_Controller {
                 $data = array(
                     'listJabatan' => $listJabatan,
                     'infoUser' => $queryUser,
-                    'page' => 'edit_anggota_kabupaten',
-                    'link' => 'view_anggota_kabupaten'
+                    'page' => 'view_anggota',
+                    'link' => 'view_anggota'
                 );  
                 
                 $this->load->view('ajaxEditUser', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function editUserByMaster(){ #this function used by Master
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 6){
+               
+                extract($_GET);
+              
+                $listJabatan = array(
+                                    'Admin Nasional'
+                                );
+
+                $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
+                $queryNegara = $this->Model->list_data_all('tbl_negara')->result_array();
+
+                $data = array(
+                    'listNegara' => $queryNegara,
+                    'listJabatan' => $listJabatan,
+                    'infoUser' => $queryUser,
+                    'page' => 'view_anggota_master',
+                    'link' => 'view_anggota'
+                );  
+                
+                $this->load->view('ajaxEditUserMaster', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function editUserByNasional(){ #this function used by Admin Nasional
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 5){
+               
+                extract($_GET);
+              
+                $listJabatan = array(
+                                    'Admin Provinsi'
+                                );
+
+                $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
+                $queryProvinsi = $this->Model->list_data_all('tbl_provinsi')->result_array();
+
+                $data = array(
+                    'listProvinsi' => $queryProvinsi,
+                    'listJabatan' => $listJabatan,
+                    'infoUser' => $queryUser,
+                    'page' => 'view_nasional',
+                    'link' => 'view_nasional'
+                );  
+                
+                $this->load->view('ajaxEditUserNasional', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function editUserByProvinsi(){ #this function used by Admin provinsi
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 4){
+               
+                extract($_GET);
+              
+                $listJabatan = array(
+                                    'Admin Kabupaten'
+                                );
+
+                $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
+                $queryKabupaten = $this->Model->ambil("kode_provinsi",$_SESSION['kode_provinsi'],"tbl_kabupaten_kota")->result_array();
+
+                $data = array(
+                    'listKabupaten' => $queryKabupaten,
+                    'listJabatan' => $listJabatan,
+                    'infoUser' => $queryUser,
+                    'page' => 'view_provinsi',
+                    'link' => 'view_provinsi'
+                );  
+                
+                $this->load->view('ajaxEditUserProvinsi', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function editUserByKabKot(){ #this function used by Admin Kabupaten kota
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 3){
+               
+                extract($_GET);
+              
+                $listJabatan = array(
+                                    'Ketua'
+                                );
+
+                $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
+                $queryDojo = $this->Model->ambil("kode_kabupaten_kota",$_SESSION['kode_kabupaten_kota'],"tbl_dojo")->result_array();
+
+                $data = array(
+                    'listDojo' => $queryDojo,
+                    'listJabatan' => $listJabatan,
+                    'infoUser' => $queryUser,
+                    'page' => 'view_anggota_kabupaten',
+                    'link' => 'view_anggota_kabupaten'
+                );  
+                
+                $this->load->view('ajaxEditUserKabKot', $data);
             }else{
                 $alert = "<script>
                     alert('Access ditolak !!');
@@ -843,10 +1094,20 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua'){
+            if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 extract($_POST);
 
+                $level = null;
+                if($inputJabatan == 'Anggota'){
+                    $level = 1;
+                }else{
+                    $level = 2;
+                }
+
                 $dataUpdate = array(
+                    'status' => 'active',
+                    'kode_dojo' => $_SESSION['kode_dojo'],
+                    'level' => $level,
                     'jabatan' =>$inputJabatan,
                 );  
 
@@ -855,6 +1116,234 @@ class Anggota extends CI_Controller {
                 $alert = "<script>
                             alert('Update Success!!');
                             window.location.href='".base_url()."index.php/anggota/';
+                            </script>";
+                $data = array(
+                        'alert' => $alert,
+                        'page' => 'notification',
+                        'link' => 'view_anggota'
+                    );  
+                    
+                $this->load->view('template/wrapper', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }   
+    }
+
+    public function updateUserByMaster(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 6){
+                extract($_POST);
+
+                $dataUpdate = array(
+                    'status' => 'active',
+                    'level' => 5,
+                    'jabatan' => $inputJabatan,
+                    'kode_dojo' => NULL,
+                    'kode_kabupaten_kota' => NULL,
+                    'kode_provinsi' => NULL,
+                    'kode_negara' => $inputNegara
+                );  
+
+                $queryUpdate = $this->Model->update("id",$inputId,"tbl_user",$dataUpdate);
+
+                $alert = "<script>
+                            alert('Update Success!!');
+                            window.location.href='".base_url()."index.php/anggota/viewMaster';
+                            </script>";
+                $data = array(
+                        'alert' => $alert,
+                        'page' => 'notification',
+                        'link' => 'view_anggota'
+                    );  
+                    
+                $this->load->view('template/wrapper', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }   
+    }
+
+    public function updateUserByNasional(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 5){
+                extract($_POST);
+
+                $dataUpdate = array(
+                    'status' => 'active',
+                    'level' => 4,
+                    'jabatan' => $inputJabatan,
+                    'kode_dojo' => NULL,
+                    'kode_kabupaten_kota' => NULL,
+                    'kode_provinsi' => $inputProvinsi,
+                    'kode_negara' => NULL
+                );  
+
+                $queryUpdate = $this->Model->update("id",$inputId,"tbl_user",$dataUpdate);
+
+                $alert = "<script>
+                            alert('Update Success!!');
+                            window.location.href='".base_url()."index.php/anggota/viewNasional';
+                            </script>";
+                $data = array(
+                        'alert' => $alert,
+                        'page' => 'notification',
+                        'link' => 'view_anggota'
+                    );  
+                    
+                $this->load->view('template/wrapper', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }   
+    }
+
+    public function updateUserByProvinsi(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 4){
+                extract($_POST);
+
+                $dataUpdate = array(
+                    'status' => 'active',
+                    'level' => 3,
+                    'jabatan' => $inputJabatan,
+                    'kode_dojo' => NULL,
+                    'kode_kabupaten_kota' => $inputKabupaten,
+                    'kode_provinsi' => NULL,
+                    'kode_negara' => NULL
+                );  
+
+                $queryUpdate = $this->Model->update("id",$inputId,"tbl_user",$dataUpdate);
+
+                $alert = "<script>
+                            alert('Update Success!!');
+                            window.location.href='".base_url()."index.php/anggota/viewProvinsi';
+                            </script>";
+                $data = array(
+                        'alert' => $alert,
+                        'page' => 'notification',
+                        'link' => 'view_anggota'
+                    );  
+                    
+                $this->load->view('template/wrapper', $data);
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }   
+    }
+
+    public function updateUserByKabKot(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['level'] == 3){
+                extract($_POST);
+
+                $dataUpdate = array(
+                    'status' => 'active',
+                    'level' => 2,
+                    'jabatan' => $inputJabatan,
+                    'kode_dojo' => $inputDojo,
+                    'kode_kabupaten_kota' => NULL,
+                    'kode_provinsi' => NULL,
+                    'kode_negara' => NULL
+                );  
+
+                $queryUpdate = $this->Model->update("id",$inputId,"tbl_user",$dataUpdate);
+
+                $alert = "<script>
+                            alert('Update Success!!');
+                            window.location.href='".base_url()."index.php/anggota/viewKabupatenKota';
                             </script>";
                 $data = array(
                         'alert' => $alert,

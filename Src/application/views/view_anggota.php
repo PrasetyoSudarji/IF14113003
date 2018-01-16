@@ -31,7 +31,7 @@
 					        	$no = 1;
 					        	foreach ($listAnggota as $key => $value) {
 					        		# code...
-					        		if(($value['kode_dojo'] == $_SESSION['kode_dojo'])){
+					        		if(($value['kode_dojo'] == $_SESSION['kode_dojo']) || $value['status'] == 'non-active'){
 					        			echo "<tr>";
 					        			echo "<td> ".$no." </td>";
 					        			echo "<td> ".$value['nama']."</td>";

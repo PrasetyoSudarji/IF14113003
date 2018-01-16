@@ -22,7 +22,7 @@ if(!$this->session->has_userdata('login')){
 
 						foreach ($infoUser as $key => $value) {
 							# code...
-							if($value['tingkatan'] == null){
+							if($value['tingkatan'] == null && $value['jabatan'] == NULL){
 								echo "<p align='center'>
 									<b style='color:red;'>Please select your <em>Tingkatan</em> first !!</b>
 								</p>

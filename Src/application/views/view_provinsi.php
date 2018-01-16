@@ -70,7 +70,7 @@
 				        				}
 					        		}
 
-					        		if(($kodeProvinsi == $_SESSION['kode_provinsi'])){
+					        		if((($kodeProvinsi == $_SESSION['kode_provinsi']) || $value['status']=='non-active') && $value['jabatan'] != 'Admin Provinsi') {
 					        			echo "<tr>";
 					        			echo "<td> ".$no." </td>";
 					        			echo "<td> ".$value['nama']."</td>";
@@ -78,7 +78,9 @@
 					        			echo "<td> ".$value['atlit']." </td>";
 					        			echo "<td> ".$value['juri']." </td>";
 					        			echo "<td> ".$value['jabatan']." </td>";
-					        			echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> </td>";
+					        			echo "<td> 
+					        				<button class='button' onclick='viewUser(".$value['id'].");'> View </button> 
+					        				<button class='button' onclick='promoteUserByProvinsi(".$value['id'].");'> Promote </button></td>";
 					        			echo "</tr>";
 					        			$no++;
 					        		}

@@ -21,6 +21,7 @@
 					                <th> Tingkatan </th>
 									<th> Atlit </th>
 					                <th> Wasit/Juri </th>
+					                <th> Official </th>
 					                <th> Jabatan </th>
 					                <th> Detail Anggota </th>
 					    		</tr>
@@ -30,21 +31,26 @@
 					        	$no = 1;
 					        	foreach ($listAnggota as $key => $value) {
 					        		# code...
-					        		if($value['level'] != 6){
-					        			echo "<tr>";
-					        			echo "<td> ".$no." </td>";
-					        			echo "<td> ".$value['nama']."</td>";
-					        			echo "<td> ".$value['tingkatan']." </td>";
-					        			echo "<td> ".$value['atlit']." </td>";
-					        			echo "<td> ".$value['juri']." </td>";
-					        			echo "<td> ".$value['jabatan']." </td>";
-					        			echo "<td> 
-					        			<button class='button' onclick='viewUser(".$value['id'].");'> View </button> 
-			        					<button class='button' onclick='promoteUserByNasional(".$value['id'].");'> Promote </button>
-			        						</td>";
-					        			echo "</tr>";
-					        			$no++;	
-					        		}
+				        			echo "<tr>";
+				        			echo "<td> ".$no." </td>";
+				        			echo "<td> ".$value['nama']."</td>";
+				        			echo "<td> ".$value['tingkatan']." </td>";
+				        			echo "<td> ".$value['atlit']." </td>";
+				        			echo "<td> ".$value['juri']." </td>";
+				        			if($value['level']==1){
+				        				echo "<td> Anggota </td>";
+				        			}else if ($value['level']==2){
+				        				echo "<td> Pengurus </td>";
+				        			}else{
+				        				echo "<td>  </td>";
+				        			}
+				        			echo "<td> ".$value['jabatan']." </td>";
+			        				echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> ";
+			        				echo "<button class='button' onclick='promoteUserByMaster(".$value['id'].");'> Promote </button> </td>";
+				        			
+				        			echo "</tr>";
+				        			$no++;		
+
 					        	}
 
 					        echo "</tbody>
