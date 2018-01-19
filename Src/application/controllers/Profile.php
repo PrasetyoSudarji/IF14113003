@@ -108,6 +108,12 @@ class Profile extends CI_Controller {
 			$config['max_width']        = 1024;
 			$config['max_height']       = 768;
 
+			$dataUpdate = array(
+	            'foto' => $_SESSION['username'].'.png'
+	         );
+
+	        $queryUpdate = $this->Model->update("id",$_SESSION['login'],"tbl_user",$dataUpdate);
+
 			$this->load->library('upload', $config);
 			if ( !$this->upload->do_upload('inputFoto'))
 			{
