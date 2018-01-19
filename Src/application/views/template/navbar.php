@@ -212,22 +212,23 @@
           <div class="modal-dialog">
             <div class="loginmodal-container">
               <h1>Create Your Account</h1><br>
-              <form method="POST" action="<?=base_url()?>index.php/register">
-              	<input type="text" class='form-control' size='16' name="inputNama" placeholder="Fullname">
-              	<input type="text" class='form-control' size='16' name="inputTempatLahir" placeholder="Tempat Lahir">
-              	<input type="date" class='form-control' size='16' name="inputTanggalLahir" style="margin-bottom: 10px;padding: 20px;">
-              	<input type="number" class='form-control' size='16' name="inputTelepon" placeholder="Nomor Telepon" style="margin-bottom: 10px;padding: 20px;">
-              	<input type="text" class='form-control' size='16' name="inputEmail" placeholder="Email" style="margin-bottom: 10px;padding: 20px;">
-              	<input type="text" class='form-control' size='16' name="inputAlamat" placeholder="Alamat">
-              	<input type="text" class='form-control' size='16' name="inputTahun" placeholder="Tahun Bergabung">
-              	<input type="text" class='form-control' size='16' name="inputDojo" placeholder="Dojo Pertama">
-              	<input type="text" class='form-control' size='16' name="inputKota" placeholder="Kota Dojo Pertama">
-              	<input type="text" class='form-control' size='16' name="inputPelatih" placeholder="Pelatih Dojo Pertama">
-              	<input type="file" class='form-control' size='16' name="inputFoto" placeholder="Foto" >
+              <form class="form" action="<?=base_url()?>index.php/register" method="post" enctype="multipart/form-data" autocomplete="off">
+              	<input type="text" class='form-control' size='16' name="inputNama" placeholder="Fullname" required>
+              	<input type="text" class='form-control' size='16' name="inputTempatLahir" placeholder="Tempat Lahir" required>
+              	<input type="date" class='form-control' size='16' name="inputTanggalLahir" style="margin-bottom: 10px;padding: 5px;" required>
+              	<input type="text" class='form-control' size='16' name="inputTelepon" placeholder="Nomor Telepon" required>
+              	<input type="email" class='form-control' size='16' name="inputEmail" placeholder="Email" style="margin-bottom: 10px;padding: 5px;" required>
+              	<label>Alamat: </label>
+              	<textarea class='form-control' name="inputAlamat" rows="5" required style="margin-bottom: 10px;padding: 5px;"> </textarea>
+              	<input type="text" class='form-control' size='16' name="inputTahun" placeholder="Tahun Bergabung" required>
+              	<input type="text" class='form-control' size='16' name="inputDojo" placeholder="Dojo Pertama" required>
+              	<input type="text" class='form-control' size='16' name="inputKota" placeholder="Kota Dojo Pertama" required>
+              	<input type="text" class='form-control' size='16' name="inputPelatih" placeholder="Pelatih Dojo Pertama" required>
+              	<label>Select your foto: </label><input type="file" name="inputFoto" accept=".gif, .jpg, .png" required />
               	<hr>
-                <input type="text" class='form-control' size='16' name="inputUser" placeholder="Username">
-                <input type="password" class='form-control' size='16' name="inputPass" placeholder="Password">
-                <input type="password" class='form-control' size='16' name="inputPassConfirm" placeholder="Confirm Password">
+                <input type="text" class='form-control' size='16' name="inputUser" placeholder="Username" required>
+                <input type="password" class='form-control' size='16' name="inputPass" placeholder="Password" required>
+                <input type="password" class='form-control' size='16' name="inputPassConfirm" placeholder="Confirm Password" required>
                 <input type="submit" name="login" class="login loginmodal-submit" value="Register">
               </form>
             </div>

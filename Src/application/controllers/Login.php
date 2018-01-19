@@ -32,6 +32,7 @@ class Login extends CI_Controller {
 				$_SESSION['login'] = $queryuser['id'];
 				$_SESSION['status'] = $queryuser['status'];
 				$_SESSION['nama'] = $queryuser['nama'];
+				$_SESSION['username'] = $queryuser['username'];
 				$_SESSION['level'] = $queryuser['level'];
 				$_SESSION['jabatan'] = $queryuser['jabatan'];
 				$_SESSION['kode_dojo'] = $queryuser['kode_dojo'];

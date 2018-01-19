@@ -7,6 +7,7 @@ class Logout extends CI_Controller {
 		$this->session->unset_userdata('login');
 		$this->session->unset_userdata('level');
 		$this->session->unset_userdata('nama');
+		$this->session->unset_userdata('usernama');
 		$this->session->unset_userdata('status');
 		$this->session->unset_userdata('kode_dojo');
 		$this->session->unset_userdata('nama_dojo');
