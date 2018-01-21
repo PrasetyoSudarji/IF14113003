@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Password extends CI_Controller {
 	  
-    public function forget(){
+    public function forgot(){
 		$alert = "<script>
 		alert('Please check your e-mail to get your new password !!');
 		window.location.href='".base_url()."';

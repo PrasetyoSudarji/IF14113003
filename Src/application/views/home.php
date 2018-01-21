@@ -22,33 +22,12 @@ if(!$this->session->has_userdata('login')){
 
 						foreach ($infoUser as $key => $value) {
 							# code...
-							if($value['tingkatan'] == null && $value['jabatan'] == NULL){
+							if($value['tingkatan'] == null || $value['tempat_lahir'] == NULL|| $value['tanggal_lahir'] == NULL|| $value['telepon'] == NULL|| $value['email'] == NULL|| $value['alamat'] == NULL|| $value['foto']== NULL){
 								echo "<p align='center'>
-									<b style='color:red;'>Please select your <em>Tingkatan</em> first !!</b>
-								</p>
-
-								<br><br>
-								<form class='form-horizontal' method='POST' action='".base_url()."index.php/anggota/updateTingkatan'>
-									<div class='form-group'>
-									  	<label for='inputTingkatan' class='control-label col-xs-2'> Tingkatan </label>
-									  	<div class='col-xs-10'>
-									  	<select class='form-control' id='inputTingkatan' name='inputTingkatan'>";
-									  		$totalTingkatan = count($listTingkatan);
-									  		for($i = 0;$i<$totalTingkatan;$i++) {
-									  			# code...
-							  					echo "<option value='".$listTingkatan[$i]."'>".$listTingkatan[$i]."</option>";
-									  		}
-										    
-									  	echo "</select>
-									  	</div>
-									</div>
-									<div class='form-group'>
-								        <div class='col-xs-offset-5 col-xs-7' >
-								            <button type='submit' class='btn btn-primary' style='min-width: 20%;'> Input </button>
-								        </div>
-								    </div>
-								</form>";
-							}else{
+									<b style='color:red;'>Please complete your <em>profile</em> first !!</b><br>
+									<b style='color:red;'>Tingkatan, tempat lahir, tanggal lahir, telepon, e-mail, alamat dan foto tidak boleh kosong</b>
+								</p>";
+							}else if($value['jabatan'] == NULL){
 								$validator = true;
 								foreach ($listRequest as $key => $value) {
 									# code...

@@ -173,7 +173,7 @@
         if (!$this->session->has_userdata('login')){
           echo '<li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span><b> Login </b></a></li>';
           echo '<li><a href="#" data-toggle="modal" data-target="#register-modal"><span class="fa fa-user-plus"></span><b> Register </b></a></li>';
-          echo '<li><a href="#" data-toggle="modal" data-target="#forget-password-modal"><span class="fa fa-key"></span><b> Forget Password </b></a></li>';
+          echo '<li><a href="#" data-toggle="modal" data-target="#forgot-password-modal"><span class="fa fa-key"></span><b> Forgot Password </b></a></li>';
         }else{
            ?>
           <ul class="nav navbar-nav">
@@ -214,18 +214,6 @@
               <h1>Create Your Account</h1><br>
               <form class="form" action="<?=base_url()?>index.php/register" method="post" enctype="multipart/form-data" autocomplete="off">
               	<input type="text" class='form-control' size='16' name="inputNama" placeholder="Fullname" required>
-              	<input type="text" class='form-control' size='16' name="inputTempatLahir" placeholder="Tempat Lahir" required>
-              	<input type="date" class='form-control' size='16' name="inputTanggalLahir" style="margin-bottom: 10px;padding: 5px;" required>
-              	<input type="text" class='form-control' size='16' name="inputTelepon" placeholder="Nomor Telepon" required>
-              	<input type="email" class='form-control' size='16' name="inputEmail" placeholder="Email" style="margin-bottom: 10px;padding: 5px;" required>
-              	<label>Alamat: </label>
-              	<textarea class='form-control' name="inputAlamat" rows="5" required style="margin-bottom: 10px;padding: 5px;"> </textarea>
-              	<input type="text" class='form-control' size='16' name="inputTahun" placeholder="Tahun Bergabung" required>
-              	<input type="text" class='form-control' size='16' name="inputDojo" placeholder="Dojo Pertama" required>
-              	<input type="text" class='form-control' size='16' name="inputKota" placeholder="Kota Dojo Pertama" required>
-              	<input type="text" class='form-control' size='16' name="inputPelatih" placeholder="Pelatih Dojo Pertama" required>
-              	<label>Select your foto: </label><input type="file" name="inputFoto" accept=".gif, .jpg, .png" required />
-              	<hr>
                 <input type="text" class='form-control' size='16' name="inputUser" placeholder="Username" required>
                 <input type="password" class='form-control' size='16' name="inputPass" placeholder="Password" required>
                 <input type="password" class='form-control' size='16' name="inputPassConfirm" placeholder="Confirm Password" required>
@@ -235,11 +223,11 @@
           </div>
         </div>
 
-        <div class="modal fade" id="forget-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
             <div class="loginmodal-container">
               <h1>Insert Your Email Address</h1><br>
-              <form method="POST" action="<?=base_url()?>index.php/password/forget">
+              <form method="POST" action="<?=base_url()?>index.php/password/forgot">
                 <input type="text" name="inputEmail" placeholder="Email">
                 <input type="submit" name="login" class="login loginmodal-submit" value="OK">
               </form>
