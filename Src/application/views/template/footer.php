@@ -40,6 +40,68 @@
       ajaxRequest.send(null);
   }
 
+  function editProvinsi(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          var ajaxTampil = document.getElementById('placeholderProvinsi');
+          ajaxTampil.innerHTML = ajaxRequest.responseText;
+        }
+      }
+      var url="<?=base_url()?>index.php/provinsi/editProvinsi?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+  }
+
+  function editKabupaten(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          var ajaxTampil = document.getElementById('placeholderKabupaten');
+          ajaxTampil.innerHTML = ajaxRequest.responseText;
+        }
+      }
+      var url="<?=base_url()?>index.php/kabupatenkota/editKabupaten?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+  }
+
   function editUserByAdmin(id) {
       var ajaxRequest;
     
