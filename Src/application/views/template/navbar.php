@@ -26,11 +26,11 @@
 				              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-envelope'></span> 
 				              <b> &nbsp&nbspSurat dan Edaran </b><span class='caret'></span></a>
 				                <ul class='dropdown-menu'>
-				                  <li class=";if($link=='lihat_surat'){echo 'active';}echo "><a href='#'><i class='fa fa-table' aria-hidden='true'></i> Lihat Surat </a></li>
-				                  <li class=";if($link=='lihat_edaran'){echo 'active';}echo "><a href='#'><i class='fa fa-table' aria-hidden='true'></i> Lihat Edaran </a></li>
+				                  <li class=";if($link=='lihat_surat'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Surat </a></li>
+				                  <li class=";if($link=='lihat_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/edaran'><i class='fa fa-table' aria-hidden='true'></i> Lihat Edaran </a></li>
 			                  		";
-				                  	echo "<li class=";if($link=='tambah_surat'){echo 'active';}echo "><a href='#'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Surat</a></li>";
-				                  	echo "<li class=";if($link=='tambah_edaran'){echo 'active';}echo "><a href='#'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Edaran </a></li>";
+				                  	echo "<li class=";if($link=='tambah_surat'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambahsurat'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Surat</a></li>";
+				                  	echo "<li class=";if($link=='tambah_edaran'){echo 'active';}echo "><a href='".base_url()."index.php/suratEdaran/tambahedaran'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Edaran </a></li>";
 				                echo "</ul>
 				              </li>";
 						echo "<li class='dropdown'>
@@ -234,7 +234,8 @@
               <h1>Create Your Account</h1><br>
               <form class="form" action="<?=base_url()?>index.php/register" method="post" enctype="multipart/form-data" autocomplete="off">
               	<input type="text" class='form-control' size='16' name="inputNama" placeholder="Fullname" required>
-                <input type="text" class='form-control' size='16' name="inputUser" placeholder="Username" required>
+              	<input type="email" class='form-control' size='16' name="inputEmail" placeholder="E-mail" required style="margin-bottom:10px; height:45px;padding-left: 8px;font-size: 15px;">
+                <input type="text" class='form-control' size='16' name="inputUser" placeholder="Username" required >
                 <input type="password" class='form-control' size='16' name="inputPass" placeholder="Password" required>
                 <input type="password" class='form-control' size='16' name="inputPassConfirm" placeholder="Confirm Password" required>
                 <input type="submit" name="login" class="login loginmodal-submit" value="Register">
@@ -248,7 +249,7 @@
             <div class="loginmodal-container">
               <h1>Insert Your Email Address</h1><br>
               <form method="POST" action="<?=base_url()?>index.php/password/forgot">
-                <input type="text" name="inputEmail" placeholder="Email">
+                <input type="email" class='form-control' size='16' name="inputEmail" placeholder="E-mail" required style="margin-bottom:10px; height:45px;padding-left: 8px;font-size: 15px;">
                 <input type="submit" name="login" class="login loginmodal-submit" value="OK">
               </form>
             </div>

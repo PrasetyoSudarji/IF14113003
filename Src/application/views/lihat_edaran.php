@@ -40,7 +40,7 @@
 					        			echo "<td> ".$value['perihal']." </td>";
 					        			echo "<td> ".$infoNameUser." </td>";
 					        			echo "<td> ".$value['tanggal_surat_edaran']." </td>";
-					        			echo "<td> <button class='button' onclick='viewSuratEdaran(".$value['kode_surat_edaran'].");'> View </button> </td>";
+					        			echo "<td> <button class='button' onclick='viewEdaran(".$value['kode_surat_edaran'].");'> View </button> </td>";
 					        			echo "</tr>";
 					        			$no++;
 					        			}

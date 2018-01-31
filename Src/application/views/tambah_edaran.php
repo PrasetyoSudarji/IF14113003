@@ -47,7 +47,7 @@
 					    
 					    <div class='form-group'>
 					        <div class='col-xs-offset-5 col-xs-7' >
-					            <button type='submit' class='btn btn-primary' style='min-width: 20%;'> Input </button>
+					            <button type='submit' class='btn btn-primary' style='min-width: 20%;'> Create </button>
 					        </div>
 					    </div>
 					</form>

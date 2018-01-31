@@ -7,6 +7,7 @@ class Register extends CI_Controller {
 		extract ($_POST);
 
 		$queryuser = $this->Model->ambil("username",md5($inputUser),"tbl_user");
+		$queryUserEmail = $this->Model->ambil("email",$inputEmail,"tbl_user");
 		if ($queryuser->result_array() != null){
 			$alert = "<script>
 					alert('Username telah digunakan !!');
@@ -18,8 +19,18 @@ class Register extends CI_Controller {
 				'link' => 'home'
 			);
 			$this->load->view('template/wrapper', $data);
+		}else if ($queryUserEmail->result_array() != null){
+			$alert = "<script>
+					alert('Email telah digunakan !!');
+					window.location.href='".base_url()."';
+					</script>";
+			$data = array(
+				'alert' => $alert,
+				'page' => 'notification',
+				'link' => 'home'
+			);
+			$this->load->view('template/wrapper', $data);
 		}else{
-
 			
 			if ($inputPass == $inputPassConfirm){
 			
@@ -27,6 +38,7 @@ class Register extends CI_Controller {
 				$dataInsert = array(
 					'id' => $id,
 					'nama' => $inputNama,
+					'email' => $inputEmail,
 					'status' => 'non-active',
 					'level' => '1',
 					'username' => md5($inputUser),

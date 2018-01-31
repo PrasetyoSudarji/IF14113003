@@ -83,37 +83,34 @@ if(!$this->session->has_userdata('login')){
 		echo "<div class='container'>
 				<div class='container-content' style='min-height:100px;'>
 					<div class='header-content'>
-						<h3>
-						<b> Total Anggota : ";
-						$counterAnggota = 0;
-						foreach ($listAnggota as $key => $value) {
-							# code...
-							if($value['jabatan'] != 'Admin' && $value['status'] == 'aktif'){
-								$counterAnggota ++;
-							}
-						}
-						echo $counterAnggota;
-						if($_SESSION['jabatan'] != 'Admin Kabupaten' || $_SESSION['jabatan'] != 'Admin Provinsi' || $_SESSION['jabatan'] != 'Admin Nasional'){
-							echo " </br>
-							Saldo Dojo : ";
-							echo 'Rp. ' . number_format( $saldoDojo, 0 , '' , '.' ) . ',-';
-						}
-						echo "</b>
-						</h3>
-					</div>
+					    ";
+					    if($_SESSION['level']<3){
+    						echo "<h3>
+    						<b> Total Anggota : ";
+    						$counterAnggota = 0;
+    						foreach ($listAnggota as $key => $value) {
+    							# code...
+    							if($value['jabatan'] != 'Admin' && $value['status'] == 'aktif'){
+    								$counterAnggota ++;
+    							}
+    						}
+    						echo $counterAnggota;
+    						if($_SESSION['jabatan'] != 'Admin Kabupaten' || $_SESSION['jabatan'] != 'Admin Provinsi' || $_SESSION['jabatan'] != 'Admin Nasional'){
+    							echo " </br>
+    							Saldo Dojo : ";
+    							echo 'Rp. ' . number_format( $saldoDojo, 0 , '' , '.' ) . ',-';
+    						}
+    						echo "</b>
+    						</h3>";
+					    }else{
+					        echo "<h3><b> HOME </b></h3>";
+					    }
+					echo "</div>
 				</div>
 
 				<div class='container-content' style='min-height:250px;'>
 					<div class='body-content'>
-						<p>
-							Lorem ipsum dolor sit amet, adversarium concludaturque pro eu. Est ut error tollit. Ex sit possim meliore erroribus, duis argumentum inciderint mea ut. Usu ex vero etiam impetus, ius an agam veniam tantas, nisl legere ex eos.
-						</p>
-						<p>
-						Congue nonumy id eam, vel an virtute feugiat. At illud homero suscipiantur ius, ex natum virtute his. Probatus accusamus duo at, iriure albucius vix te. Hinc perfecto assentior no eum, cu sea erroribus voluptatibus. Sit inermis vituperatoribus et, nemore singulis dissentiet et eos, qui id rebum gubergren liberavisse. Homero delenit pericula ea sea.
-						</p>
-						<p>
-						Ea vis liber solet electram, omnium detraxit legendos nam ad, lorem praesent dignissim eu mea. Eum mundi fastidii laboramus ei, ne ullum tritani usu. Ei mea sale prodesset persequeris, idque sonet tibique an vix, sit ad mutat alterum dolorem. Populo delenit utroque vim ut.
-						</p>
+						<h3 style='text-align:center;'> Welcome to Website Karate Indonesia </h3><hr>
 					</div>
 				</div>
 
@@ -122,12 +119,46 @@ if(!$this->session->has_userdata('login')){
 				";
 					foreach ($listAnggota as $key => $value) {
 						# code...
-						if($value['jabatan'] != 'Anggota'){
-							echo "
-							<div class='footer-content'>
-								".$value['jabatan']." : ".$value['nama']."
-							</div>
-						";	
+						if($_SESSION['level'] < 3){
+    						if($value['jabatan'] != 'Anggota' && $value['level'] < 3){
+					           	echo "
+        							<div class='footer-content'>
+        								".$value['jabatan']." : ".$value['nama']."
+        							</div>
+        						";
+						    }
+						}else if($_SESSION['level'] == 3){
+    						if($value['jabatan'] != 'Anggota' && $value['level'] == 3){
+					           	echo "
+        							<div class='footer-content'>
+        								".$value['jabatan']." : ".$value['nama']."
+        							</div>
+        						";
+						    }
+						}else if($_SESSION['level'] == 4){
+    						if($value['jabatan'] != 'Anggota' && $value['level'] == 4){
+					           	echo "
+        							<div class='footer-content'>
+        								".$value['jabatan']." : ".$value['nama']."
+        							</div>
+        						";
+						    }
+						}else if($_SESSION['level'] == 5){
+    						if($value['jabatan'] != 'Anggota' && $value['level'] == 5){
+					           	echo "
+        							<div class='footer-content'>
+        								".$value['jabatan']." : ".$value['nama']."
+        							</div>
+        						";
+						    }
+						}else if($_SESSION['level'] == 6){
+    						if($value['jabatan'] != 'Anggota' && $value['level'] == 6){
+					           	echo "
+        							<div class='footer-content'>
+        								".$value['jabatan']." : ".$value['nama']."
+        							</div>
+        						";
+						    }
 						}
 					}
 

@@ -4,7 +4,7 @@
 			<div class='container-content' style='min-height:50px;'>
 				<div class='header-content'>
 					<h4><b>
-					SURAT
+					EDARAN
 					</b></h4>
 				</div>
 			</div>
@@ -31,21 +31,19 @@
 					        	$no = 1;
 					        	foreach ($listSuratEdaran as $key => $value) {
 					        		# code...
-					        		if($value['jenis_surat_edaran']=='Surat'){
-					        			if($value['id_penerima'] == $_SESSION['login']){
-					        				echo "<tr>";
-						        			echo "<td> ".$no." </td>";
-						        			echo "<td> ".$value['judul_surat_edaran']." </td>";
-						        			echo "<td> ".$value['jenis_surat_edaran']." </td>";
-						        			echo "<td> ".$value['status_surat_edaran']." </td>";
-						        			echo "<td> ".$value['perihal']." </td>";
-						        			echo "<td> ".$infoNameUser." </td>";
-						        			echo "<td> ".$value['tanggal_surat_edaran']." </td>";
-						        			echo "<td> <button class='button' onclick='viewSuratEdaran(".$value['kode_surat_edaran'].");'> View </button> </td>";
-						        			echo "</tr>";
-						        			$no++;
+					        		if($value['jenis_surat_edaran']=='Surat' && $value['id_penerima'] == $_SESSION['login']){
+					        			echo "<tr>";
+					        			echo "<td> ".$no." </td>";
+					        			echo "<td> ".$value['judul_surat_edaran']." </td>";
+					        			echo "<td> ".$value['jenis_surat_edaran']." </td>";
+					        			echo "<td> ".$value['status_surat_edaran']." </td>";
+					        			echo "<td> ".$value['perihal']." </td>";
+					        			echo "<td> ".$infoNameUser." </td>";
+					        			echo "<td> ".$value['tanggal_surat_edaran']." </td>";
+					        			echo "<td> <button class='button' onclick='viewSurat(".$value['kode_surat_edaran'].");'> View </button> </td>";
+					        			echo "</tr>";
+					        			$no++;
 					        			}
-					        		}
 					        	}
 
 					        echo "</tbody>
