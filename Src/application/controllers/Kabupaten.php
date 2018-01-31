@@ -19,7 +19,7 @@ class Kabupaten extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 3){
+            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 4){
                 $listKabupaten = $this->Model->list_data_all('tbl_kabupaten_kota')->result_array();
 		    	
 				$data = array(
@@ -61,7 +61,7 @@ class Kabupaten extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
 
-            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 3){
+            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 4){
                 $listProvinsi = $this->Model->list_data_all('tbl_provinsi')->result_array();
                 $data = array(
                     'listProvinsi' => $listProvinsi,
@@ -103,7 +103,7 @@ class Kabupaten extends CI_Controller {
         }else{
             extract($_POST);
 
-            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 3){
+            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 4){
                 $validator = $this->Model->ambil('nama_kabupaten_kota',$inputNamaKabupaten,'tbl_kabupaten_kota')->result_array();
 
                 $kode_kabupaten_kota = $this->getUniqueID('kode_kabupaten_kota','tbl_kabupaten_kota')+1;
@@ -176,7 +176,7 @@ class Kabupaten extends CI_Controller {
         }else{
             extract($_GET);
 
-            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 3){
+            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 4){
                
                 $queryKabupaten = $this->Model->ambil("kode_kabupaten_kota",$id,"tbl_kabupaten_kota")->result_array();
 
@@ -223,7 +223,7 @@ class Kabupaten extends CI_Controller {
         }else{
             extract($_POST);
 
-            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 3){
+            if($_SESSION['level'] == 6 || $_SESSION['level'] == 5 || $_SESSION['level'] == 4){
                $dataUpdate = array(
                     'kode_kabupaten_kota' => $inputKode, 
                     'kode_provinsi' => $inputProvinsi, 

@@ -132,16 +132,14 @@
 			                echo "</ul>
 			              </li>";
 
-			            if($_SESSION['level'] == 3){
+			            if($_SESSION['level'] == 3){ #admin kabupaten
 			            	echo "<li class='dropdown'>
 				              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-group'></span> 
 				               <b> &nbsp&nbspSumber Daya </b><span class='caret'></span></a>
 				                <ul class='dropdown-menu'>";
 			                  	echo "
 			                  	<li class=";if($link=='view_anggota_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/viewKabupatenKota'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
-			                  	echo "<hr>";
-		                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
-		                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
+			                  	
 				                echo "</ul>
 				              </li>";
 			              	echo "<li class='dropdown'>
@@ -153,20 +151,23 @@
 			                  	<li class=";if($link=='tambah_dojo'){echo 'active';}echo "><a href='".base_url()."index.php/dojo/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Dojo </a></li>";
 				                echo "</ul>
 				              </li>";
-			          	}else if($_SESSION['level'] == 4){
+			          	}else if($_SESSION['level'] == 4){ #admin provinsi
 				          	echo "<li class='dropdown'>
 				              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-group'></span> 
 				               <b> &nbsp&nbspSumber Daya </b><span class='caret'></span></a>
 				                <ul class='dropdown-menu'>";
 			                  	echo "
 			                  	<li class=";if($link=='view_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/viewProvinsi'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
+			                  	echo "<hr>";
+		                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
+		                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
 
 		                  		echo "<hr>";
 			                  		echo "<li class=";if($link=='view_list_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/provinsi'><i class='fa fa-list' aria-hidden='true'></i> Lihat Provinsi </a></li>";
 			                  		echo "<li class=";if($link=='tambah_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/provinsi/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Provinsi </a></li>";
 			                	echo "</ul>
 				              </li>";
-			          	}else if($_SESSION['level'] == 5){
+			          	}else if($_SESSION['level'] == 5){ #admin nasional
 			          		echo "<li class='dropdown'>
 				              <a class='dropdown-toggle' data-toggle='dropdown' href='#''><span class='fa fa-group'></span> 
 				               <b> &nbsp&nbspSumber Daya </b><span class='caret'></span></a>

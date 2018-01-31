@@ -30,7 +30,7 @@
 					        	$no = 1;
 					        	foreach ($listAnggota as $key => $value) {
 					        		# code...
-					        		if($value['level'] != 6){
+					        		if($value['jabatan'] != 'Admin Nasional' && $value['level'] != 6){
 					        			echo "<tr>";
 					        			echo "<td> ".$no." </td>";
 					        			echo "<td> ".$value['nama']."</td>";

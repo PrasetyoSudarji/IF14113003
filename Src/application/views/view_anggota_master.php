@@ -31,25 +31,28 @@
 					        	$no = 1;
 					        	foreach ($listAnggota as $key => $value) {
 					        		# code...
-				        			echo "<tr>";
-				        			echo "<td> ".$no." </td>";
-				        			echo "<td> ".$value['nama']."</td>";
-				        			echo "<td> ".$value['tingkatan']." </td>";
-				        			echo "<td> ".$value['atlit']." </td>";
-				        			echo "<td> ".$value['juri']." </td>";
-				        			if($value['level']==1){
-				        				echo "<td> Anggota </td>";
-				        			}else if ($value['level']==2){
-				        				echo "<td> Pengurus </td>";
-				        			}else{
-				        				echo "<td>  </td>";
-				        			}
-				        			echo "<td> ".$value['jabatan']." </td>";
-			        				echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> ";
-			        				echo "<button class='button' onclick='promoteUserByMaster(".$value['id'].");'> Promote </button> </td>";
-				        			
-				        			echo "</tr>";
-				        			$no++;		
+					        		if($_SESSION['login'] != $value['id']){
+
+					        			echo "<tr>";
+					        			echo "<td> ".$no." </td>";
+					        			echo "<td> ".$value['nama']."</td>";
+					        			echo "<td> ".$value['tingkatan']." </td>";
+					        			echo "<td> ".$value['atlit']." </td>";
+					        			echo "<td> ".$value['juri']." </td>";
+					        			if($value['level']==1){
+					        				echo "<td> Anggota </td>";
+					        			}else if ($value['level']==2){
+					        				echo "<td> Pengurus </td>";
+					        			}else{
+					        				echo "<td>  </td>";
+					        			}
+					        			echo "<td> ".$value['jabatan']." </td>";
+				        				echo "<td> <button class='button' onclick='viewUser(".$value['id'].");'> View </button> ";
+				        				echo "<button class='button' onclick='promoteUserByMaster(".$value['id'].");'> Promote </button> </td>";
+					        			
+					        			echo "</tr>";
+					        			$no++;
+					        		}
 
 					        	}
 
