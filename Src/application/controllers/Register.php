@@ -6,7 +6,7 @@ class Register extends CI_Controller {
 	public function index(){
 		extract ($_POST);
 
-		$queryuser = $this->Model->ambil("username",md5($inputUser),"tbl_user");
+		$queryuser = $this->Model->ambil("username",md5(strtolower($inputUser)),"tbl_user");
 		$queryUserEmail = $this->Model->ambil("email",$inputEmail,"tbl_user");
 		if ($queryuser->result_array() != null){
 			$alert = "<script>
@@ -41,7 +41,7 @@ class Register extends CI_Controller {
 					'email' => $inputEmail,
 					'status' => 'non-active',
 					'level' => '1',
-					'username' => md5($inputUser),
+					'username' => md5(strtolower($inputUser)),
 					'password' => md5($inputPass),
 					'tanggal_bergabung' => date('Y-m-d')
 				);

@@ -6,7 +6,7 @@ class Login extends CI_Controller {
 	public function index(){
 		extract ($_POST);
 
-		$queryuser = $this->Model->ambil("username",md5($user),"tbl_user");
+		$queryuser = $this->Model->ambil("username",md5(strtolower($user)),"tbl_user");
 		if ($queryuser->result_array() == null){
 			$_SESSION['login'] = null;
 			$alert = "<script>

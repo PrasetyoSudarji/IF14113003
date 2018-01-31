@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<title>Samsak.id</title>
+	<title>SAMSAK (Sistem Aplikasi Manajemen Sumberdaya Anggota Karate)</title>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="<?=base_url()?>assets/img/logo.png">    
+    <link rel="shortcut icon" href="<?=base_url()?>assets/img/logo_bkc.jpg">    
     <!-- CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/template-login/css/login_modal.css">
@@ -31,11 +31,11 @@
       <div class="row ">
         <div class="col-md-1">
             <a href='<?=base_url();?>'>
-              <img src="<?=base_url()?>assets/img/logo.png" width="70px" style="margin-bottom:10px; "/>
+              <img src="<?=base_url()?>assets/img/logo_bkc.jpg" width="80px" height="80px" style="margin-bottom:10px; "/>
             </a>
         </div>
-        <div class="col-md-5">
-          <h3><b>Samsak.id</b></h3>
+        <div class="col-md-9">
+          <h3><b>SAMSAK (Sistem Aplikasi Manajemen Sumberdaya Anggota Karate) </b></h3>
           <p><em>"<b>
               <?php
                 if(!$this->session->has_userdata('kode_dojo')){
@@ -46,23 +46,15 @@
               ?>
             </b>"</em></p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-2">
             <p class="text-right" >
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
-              <a href="https://twitter.com/itera_PTN" style="color: #000;" ><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></a>
+              <a href="https://www.facebook.com/groups/155324169181/" style="color: #000;"><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></a>
             </span>&nbsp;&nbsp;&nbsp;
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
-              <a href="https://www.facebook.com/itera.official/" style="color: #000;"><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></a>
-            </span>&nbsp;&nbsp;&nbsp;
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <a href="https://www.instagram.com/iteraofficial/" style="color: #000;"><i class="fa fa-instagram fa-stack-1x fa-inverse"></i></a>
-            </span>&nbsp;&nbsp;&nbsp;
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <a href="https://www.youtube.com/results?search_query=itera" style="color: #000;"><i class="fa fa-youtube fa-stack-1x fa-inverse"></i></a>
+              <a href="#" style="color: #000;"><i class="fa fa-instagram fa-stack-1x fa-inverse"></i></a>
             </span>&nbsp;&nbsp;&nbsp;
             </p>
         </div>

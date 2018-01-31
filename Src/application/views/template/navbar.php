@@ -54,8 +54,8 @@
 			                  		echo "<li class=";if($link=='pindah_anggota'){echo 'active';}echo "><a href='#'><i class='fa fa-retweet' aria-hidden='true'></i> Pindah Anggota </a></li>";
 			                  		echo "<li class=";if($link=='lihat_request_perpindahan'){echo 'active';}echo "><a href='#'><i class='fa fa-bell' aria-hidden='true'></i> Request Perpindahan </a></li>";
 			                  		echo "<hr>";
-			                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupatenkota'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
-			                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupatenkota/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
+			                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
+			                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
 			                  		echo "<hr>";
 			                  		echo "<li class=";if($link=='view_list_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/provinsi'><i class='fa fa-list' aria-hidden='true'></i> Lihat Provinsi </a></li>";
 			                  		echo "<li class=";if($link=='tambah_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/provinsi/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Provinsi </a></li>";
@@ -140,8 +140,8 @@
 			                  	echo "
 			                  	<li class=";if($link=='view_anggota_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/viewKabupatenKota'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
 			                  	echo "<hr>";
-		                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupatenkota'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
-		                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupatenkota/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
+		                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
+		                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
 				                echo "</ul>
 				              </li>";
 			              	echo "<li class='dropdown'>
@@ -174,8 +174,8 @@
 				                  	echo "
 				                  	<li class=";if($link=='view_nasional'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/viewNasional'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
 				                  	echo "<hr>";
-			                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupatenkota'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
-			                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupatenkota/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
+			                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
+			                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";
 			                  		echo "<hr>";
 			                  		echo "<li class=";if($link=='view_list_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/provinsi'><i class='fa fa-list' aria-hidden='true'></i> Lihat Provinsi </a></li>";
 			                  		echo "<li class=";if($link=='tambah_provinsi'){echo 'active';}echo "><a href='".base_url()."index.php/provinsi/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Provinsi </a></li>";
@@ -249,7 +249,9 @@
             <div class="loginmodal-container">
               <h1>Insert Your Email Address</h1><br>
               <form method="POST" action="<?=base_url()?>index.php/password/forgot">
-                <input type="email" class='form-control' size='16' name="inputEmail" placeholder="E-mail" required style="margin-bottom:10px; height:45px;padding-left: 8px;font-size: 15px;">
+                <input type="text" class='form-control' size='16' name="inputUsername" placeholder="Username"  style="margin-bottom:10px; height:45px;padding-left: 8px;font-size: 15px;">
+                <b>or</b><br>
+                <input type="email" class='form-control' size='16' name="inputEmail" placeholder="E-mail" style="margin-bottom:10px; margin-top:10px;height:45px;padding-left: 8px;font-size: 15px;">
                 <input type="submit" name="login" class="login loginmodal-submit" value="OK">
               </form>
             </div>

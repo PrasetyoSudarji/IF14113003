@@ -96,7 +96,7 @@
           ajaxTampil.innerHTML = ajaxRequest.responseText;
         }
       }
-      var url="<?=base_url()?>index.php/kabupatenkota/editKabupaten?id="+id;
+      var url="<?=base_url()?>index.php/kabupaten/editKabupaten?id="+id;
       
       ajaxRequest.open("GET",url,true);
       ajaxRequest.send(null);

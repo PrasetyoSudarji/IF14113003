@@ -7,7 +7,7 @@ class Password extends CI_Controller {
     	extract($_POST);
 
     	if($inputUsername!=null){
-    		$queryUser = $this->Model->ambil("Username",$inputUsername,"tbl_user")->result_array();
+    		$queryUser = $this->Model->ambil("username",md5(strtolower($inputUsername)),"tbl_user")->result_array();
     		if($queryUser == null){
     			$alert = "<script>
 						alert('Username/Email tidak terdaftar!!');
@@ -29,7 +29,7 @@ class Password extends CI_Controller {
     		}
     	}else if($inputEmail!=null){
     		$queryUserEmail = $this->Model->ambil("email",$inputEmail,"tbl_user")->result_array();
-	    	if ($queryUserEmail- == null){
+	    	if ($queryUserEmail == null){
 				$alert = "<script>
 						alert('Username/Email tidak terdaftar!!');
 						window.location.href='".base_url()."';
