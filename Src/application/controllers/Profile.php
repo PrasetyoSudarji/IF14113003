@@ -27,7 +27,9 @@ class Profile extends CI_Controller {
 	            						'DAN II',
 	            						'DAN III',
 	            						'DAN IV',
-	            						'DAN V');
+	            						'DAN V',
+	            						'DAN VI',
+	            						'DAN VII');
 			$infoUser = $this->Model->ambil('id',$_SESSION['login'],'tbl_user')->result_array();
 
 			$data = array(

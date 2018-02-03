@@ -39,7 +39,7 @@
 					        			}
 					        		}
 					        		
-				        			if(($kodeKabupatenKota == $_SESSION['kode_kabupaten_kota'] || $value['status'] == 'non-active' && $value['jabatan']) != 'Admin Kabupaten'){
+				        			if(($kodeKabupatenKota == $_SESSION['kode_kabupaten_kota'] || $value['status'] == 'non-active') && $value['jabatan'] != 'Admin Kabupaten'){
 				        				echo "<tr>";
 					        			echo "<td> ".$no." </td>";
 					        			echo "<td> ".$value['nama']."</td>";
