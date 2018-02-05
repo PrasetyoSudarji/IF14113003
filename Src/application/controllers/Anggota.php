@@ -327,6 +327,49 @@ class Anggota extends CI_Controller {
         }
     }
 
+    public function viewRequestAtlitNasional(){
+
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['jabatan'] == 'Admin Atlit Nasional' || $_SESSION['level'] == 6){
+                $listRequest = $this->Model->list_data_all('tbl_request')->result_array();
+                
+                $data = array(
+                    'listRequest' => $listRequest,
+                    'page' => 'view_request_atlit_nasional',
+                    'link' => 'view_request_atlit_nasional'
+                );  
+                
+                $this->load->view('template/wrapper', $data);
+            }else{
+
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
     public function prosesPindah(){
 
         if(!$this->session->has_userdata('login')){
@@ -553,7 +596,8 @@ class Anggota extends CI_Controller {
                 'kode_request' => $id,
                 'id_anggota' => $_SESSION['login'],
                 'kode_dojo' => $inputDojo,
-                'status_request' => 'Menunggu Persetujuan'
+                'status_request' => 'Menunggu Persetujuan',
+                'tipe_request' => 'Anggota Dojo'
             );
 
             $queryInsert = $this->Model->simpan_data($dataInsert,'tbl_request');   
@@ -625,6 +669,60 @@ class Anggota extends CI_Controller {
         }
     }
 
+    public function terimaAtlitNasional(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['jabatan'] == 'Admin Atlit Nasional' ||  $_SESSION['level'] == 6){
+                extract($_GET);
+
+                $infoUser = null;
+
+                $queryRequest = $this->Model->ambil('kode_request',$id,'tbl_request')->result_array();
+                foreach ($queryRequest as $key => $value) {
+                    # code...
+                    $dataUpdate = array(
+                        'status' => 'active',
+                        'kode_dojo' => $value['kode_dojo'],
+                        'jabatan' => 'Anggota'
+                     );
+
+                    $queryUpdate = $this->Model->update("id",$value['id_anggota'],"tbl_user",$dataUpdate);
+
+                    $dataUpdate2 = array(
+                        'status_request' => 'Diterima'
+                     );
+
+                    $queryUpdate2 = $this->Model->update("kode_request",$value['kode_request'],"tbl_request",$dataUpdate2);
+                }
+
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
     public function tolakAnggota(){
         if(!$this->session->has_userdata('login')){
             $alert = "<script>
@@ -642,6 +740,52 @@ class Anggota extends CI_Controller {
 
             if($_SESSION['jabatan'] == 'Admin' || $_SESSION['jabatan'] == 'Ketua' || $_SESSION['level'] == 6){
                 
+                extract($_GET);
+
+                $infoUser = null;
+
+                $queryRequest = $this->Model->ambil('kode_request',$id,'tbl_request')->result_array();
+                foreach ($queryRequest as $key => $value) {
+                    # code...
+
+                    $dataUpdate = array(
+                        'status_request' => 'Ditolak'
+                     );
+
+                    $queryUpdate = $this->Model->update("kode_request",$value['kode_request'],"tbl_request",$dataUpdate);
+                }
+            }else{
+                $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+                $data = array(
+                    'alert' => $alert,
+                    'page' => 'notification',
+                    'link' => 'home'
+                );  
+            
+                $this->load->view('template/wrapper', $data);
+            }
+        }
+    }
+
+    public function tolakAtlitNasional(){
+        if(!$this->session->has_userdata('login')){
+            $alert = "<script>
+                    alert('Access ditolak !!');
+                    window.location.href='".base_url()."';
+                    </script>";
+            $data = array(
+                'alert' => $alert,
+                'page' => 'notification',
+                'link' => 'home'
+            );  
+        
+            $this->load->view('template/wrapper', $data);
+        }else{
+
+            if($_SESSION['jabatan'] == 'Admin Atlit Nasional' || $_SESSION['level'] == 6){
                 extract($_GET);
 
                 $infoUser = null;
@@ -840,7 +984,8 @@ class Anggota extends CI_Controller {
                 extract($_GET);
               
                 $listJabatan = array(
-                                    'Admin Nasional'
+                                    'Admin Nasional',
+                                    'Admin Atlit Nasional'
                                 );
 
                 $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
@@ -892,7 +1037,8 @@ class Anggota extends CI_Controller {
                 extract($_GET);
               
                 $listJabatan = array(
-                                    'Admin Provinsi'
+                                    'Admin Provinsi',
+                                    'Admin Atlit Provinsi'
                                 );
 
                 $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
@@ -944,7 +1090,8 @@ class Anggota extends CI_Controller {
                 extract($_GET);
               
                 $listJabatan = array(
-                                    'Admin Kabupaten'
+                                    'Admin Kabupaten',
+                                    'Admin Atlit Kabupaten'
                                 );
 
                 $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();

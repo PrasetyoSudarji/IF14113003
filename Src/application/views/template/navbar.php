@@ -174,6 +174,9 @@
 				                <ul class='dropdown-menu'>";
 				                  	echo "
 				                  	<li class=";if($link=='view_nasional'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/viewNasional'><i class='fa fa-table' aria-hidden='true'></i> Lihat Anggota </a></li>";
+				                  	if($_SESSION['jabatan'] == 'Admin Atlit Nasional'){
+				                  		echo "<li class=";if($link=='view_request_atlit_nasional'){echo 'active';}echo "><a href='".base_url()."index.php/anggota/viewrequestatlitnasional'><i class='fa fa-list' aria-hidden='true'></i> Lihat Request Atlit </a></li>";
+				                  	}
 				                  	echo "<hr>";
 			                  		echo "<li class=";if($link=='view_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten'><i class='fa fa-list' aria-hidden='true'></i> Lihat Kabupaten/Kota </a></li>";
 			                  		echo "<li class=";if($link=='tambah_kabupaten'){echo 'active';}echo "><a href='".base_url()."index.php/kabupaten/tambah'><i class='fa fa-plus' aria-hidden='true'></i> Tambah Kabupaten/Kota </a></li>";

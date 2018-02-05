@@ -155,6 +155,9 @@
 	        <div class='col-xs-10'>
 	            <input type="file" class='form-control' name="inputFoto" accept=".gif, .jpg, .png" required />
 	        </div>
+	        <div class='col-xs-12'>
+	            <div style="color:red"> Ukuran maksimal foto adalah 2 Mb </div>
+	        </div>
 	    </div>
 	    <hr>
         <input type="submit" name="login" class="login loginmodal-submit" value="OK">

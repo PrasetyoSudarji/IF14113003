@@ -17,19 +17,20 @@ class Profile extends CI_Controller {
         
             $this->load->view('template/wrapper', $data);
         }else{
-			$listTingkatan = array('KYU VI',
-	            						'KYU V',
-	            						'KYU IV',
-	            						'KYU III',
-	            						'KYU II',
-	            						'KYU I',
-	            						'DAN I',
-	            						'DAN II',
-	            						'DAN III',
-	            						'DAN IV',
-	            						'DAN V',
-	            						'DAN VI',
-	            						'DAN VII');
+			$listTingkatan = array('KYU VII',
+									'KYU VI',
+            						'KYU V',
+            						'KYU IV',
+            						'KYU III',
+            						'KYU II',
+            						'KYU I',
+            						'DAN I',
+            						'DAN II',
+            						'DAN III',
+            						'DAN IV',
+            						'DAN V',
+            						'DAN VI',
+            						'DAN VII');
 			$infoUser = $this->Model->ambil('id',$_SESSION['login'],'tbl_user')->result_array();
 
 			$data = array(
@@ -107,8 +108,6 @@ class Profile extends CI_Controller {
 			$config['file_name']		= $_SESSION['username'].'.png';
 			$config['overwrite']		= true;
 			$config['max_size']         = 2048;
-			$config['max_width']        = 1024;
-			$config['max_height']       = 768;
 
 			$dataUpdate = array(
 	            'foto' => $_SESSION['username'].'.png'
@@ -121,7 +120,7 @@ class Profile extends CI_Controller {
 			{
 				$alert = "<script>
 				alert('Gambar tidak valid!!');
-				window.location.href='".base_url()."';
+				window.location.href='".base_url()."index.php/profile';
 				</script>";
 				$data = array(
 					'alert' => $alert,

@@ -10,6 +10,8 @@
 			echo "<form action='".base_url()."index.php/anggota/viewProvinsi'>";
 		}else if($_SESSION['level'] == 5){
 			echo "<form action='".base_url()."index.php/anggota/viewNasional'>";
+		}else if($_SESSION['level'] == 6){
+			echo "<form action='".base_url()."index.php/anggota/viewMaster'>";
 		}
 		
 	}

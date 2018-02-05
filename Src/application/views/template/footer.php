@@ -477,6 +477,38 @@
       }
   }
 
+  function acceptRequestAtlitNasional(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      var url="<?=base_url()?>index.php/anggota/terimaAtlitNasional?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          alert('Request berhasil disetujui!!');
+          window.location.href='<?=base_url()?>index.php/anggota/viewrequestatlitnasional';
+        }
+      }
+  }
+
   function declineRequestAnggota(id) {
       var ajaxRequest;
     
@@ -505,6 +537,38 @@
         if (ajaxRequest.readyState == 4) {
           alert('Request berhasil ditolak!!');
           window.location.href='<?=base_url()?>index.php/anggota/request';
+        }
+      }
+  }
+
+  function declineRequestAtlitNasional(id) {
+      var ajaxRequest;
+    
+      try {
+        ajaxRequest = new XMLHttpRequest(); //Opera 8.0+, Firefox, Safari
+      } catch(e) {
+        //Untuk IE
+        try {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+          try {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch(e) {
+            alert("Gagal karena browser anda tidak mendukung ajax");
+            return false;
+          }
+        }
+      }
+
+      var url="<?=base_url()?>index.php/anggota/tolakAtlitNasional?id="+id;
+      
+      ajaxRequest.open("GET",url,true);
+      ajaxRequest.send(null);
+
+      ajaxRequest.onreadystatechange = function() {
+        if (ajaxRequest.readyState == 4) {
+          alert('Request berhasil ditolak!!');
+          window.location.href='<?=base_url()?>index.php/anggota/viewrequestatlitnasional';
         }
       }
   }
