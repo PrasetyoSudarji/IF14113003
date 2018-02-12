@@ -1,2 +1,2 @@
-# Samsak.id
-Version Controller for web Samsak.id
+# SAMSAK
+Version Controller for web SAMSAK
