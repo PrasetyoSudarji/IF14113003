@@ -187,6 +187,7 @@ class Anggota extends CI_Controller {
             
                 $this->load->view('template/wrapper', $data);
             }else{
+                
 
                 $listAnggota = $this->Model->list_data_all("tbl_user")->result_array();
                 
@@ -216,6 +217,20 @@ class Anggota extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
             extract($_GET);
+            $listTingkatan = array('KYU VII',
+                                    'KYU VI',
+                                    'KYU V',
+                                    'KYU IV',
+                                    'KYU III',
+                                    'KYU II',
+                                    'KYU I',
+                                    'DAN I',
+                                    'DAN II',
+                                    'DAN III',
+                                    'DAN IV',
+                                    'DAN V',
+                                    'DAN VI',
+                                    'DAN VII');
 
             $queryUser = $this->Model->ambil("id",$id,"tbl_user")->result_array();
             $infoDojoName = null;
@@ -230,6 +245,7 @@ class Anggota extends CI_Controller {
             }
             
             $data = array(
+                'listTingkatan' => $listTingkatan,
                 'infoUser' => $queryUser,
                 'infoDojoName' => $infoDojoName,
                 'page' => 'view_anggota',
