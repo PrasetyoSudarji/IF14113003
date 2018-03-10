@@ -70,8 +70,8 @@ class Password extends CI_Controller {
 		    'protocol' => 'smtp',
 		    'smtp_host' => 'mx1.hostinger.co.id',
 		    'smtp_port' => 587,
-		    'smtp_user' => 'support@bkcbdg.com',
-		    'smtp_pass' => 'p45sw0rd',
+		    'smtp_user' => 'xxxx@xxx.com',
+		    'smtp_pass' => 'xxx',
 		    'mailtype'  => 'html', 
 		    'charset'   => 'iso-8859-1'
 		);
