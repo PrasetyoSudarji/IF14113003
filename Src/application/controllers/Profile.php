@@ -58,33 +58,47 @@ class Profile extends CI_Controller {
             $this->load->view('template/wrapper', $data);
         }else{
         	extract($_POST);
-			$dataUpdate = array(
-	            'nama' => $inputNama,
-	            'tingkatan' => $inputTingkatan,
-	            'tempat_lahir' => $inputTempatLahir,
-	            'tanggal_lahir' => date_format(date_create($inputTanggalLahir),'Y-m-d'),
-	            'telepon' => $inputTelepon,
-	            'email' => $inputEmail,
-	            'alamat' => $inputAlamat,
-	            'tahun_masuk' => $inputTahunMasuk,
-	            'dojo_pertama' => $inputDojoPertama,
-	            'kota' => $inputKota,
-	            'nama_pelatih' => $inputNamaPelatih
-	         );
+        	$queryUserEmail = $this->Model->ambil("email",$inputEmail,"tbl_user");
+        	if ($queryUserEmail->result_array() != null){
+				$alert = "<script>
+						alert('Email telah digunakan !!');
+						window.location.href='".base_url()."';
+						</script>";
+				$data = array(
+					'alert' => $alert,
+					'page' => 'notification',
+					'link' => 'home'
+				);
+				$this->load->view('template/wrapper', $data);
+			}else{
+				$dataUpdate = array(
+		            'nama' => $inputNama,
+		            'tingkatan' => $inputTingkatan,
+		            'tempat_lahir' => $inputTempatLahir,
+		            'tanggal_lahir' => date_format(date_create($inputTanggalLahir),'Y-m-d'),
+		            'telepon' => $inputTelepon,
+		            'email' => $inputEmail,
+		            'alamat' => $inputAlamat,
+		            'tahun_masuk' => $inputTahunMasuk,
+		            'dojo_pertama' => $inputDojoPertama,
+		            'kota' => $inputKota,
+		            'nama_pelatih' => $inputNamaPelatih
+		         );
 
-	        $queryUpdate = $this->Model->update("id",$_SESSION['login'],"tbl_user",$dataUpdate);
+		        $queryUpdate = $this->Model->update("id",$_SESSION['login'],"tbl_user",$dataUpdate);
 
-			$alert = "<script>
-                    alert('Update profile success !!');
-                    window.location.href='".base_url()."index.php/profile';
-                    </script>";
-            $data = array(
-                'alert' => $alert,
-                'page' => 'notification',
-                'link' => 'home'
-            );  
-        
-            $this->load->view('template/wrapper', $data);
+				$alert = "<script>
+	                    alert('Update profile success !!');
+	                    window.location.href='".base_url()."index.php/profile';
+	                    </script>";
+	            $data = array(
+	                'alert' => $alert,
+	                'page' => 'notification',
+	                'link' => 'home'
+	            );  
+	        
+	            $this->load->view('template/wrapper', $data);
+	        }
 		}
     }
 
